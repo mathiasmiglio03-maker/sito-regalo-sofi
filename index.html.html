@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>❤️</title>
+
+  <style>
+    :root {
+      --pink: #f8c8dc;
+      --pink-dark: #d85a91;
+      --text: #4a2637;
+      --card: rgba(255, 255, 255, 0.82);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f7bfd6, #fbdde9);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(760px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 42px 0 56px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin: 0 0 30px;
+      font-weight: 500;
+    }
+
+    .entry {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px 22px;
+      margin: 18px 0;
+      box-shadow: 0 8px 25px rgba(120, 45, 80, 0.10);
+      backdrop-filter: blur(5px);
+    }
+
+    .letter {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--pink-dark);
+      margin-bottom: 8px;
+    }
+
+    .place-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .place {
+      font-size: 1.15rem;
+      font-weight: 650;
+    }
+
+    .date {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      opacity: 0.8;
+      white-space: nowrap;
+    }
+
+    a {
+      display: block;
+      color: #168dcc;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      margin: 7px 0;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    .note {
+      margin: 10px 0;
+    }
+
+    .note-inline {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    .date-inline {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    /* --- CONTENITORE SCHEDA PER LE IMMAGINI --- */
+    .gallery-container {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 12px;
+      margin: 18px 0 25px;
+      box-shadow: 0 8px 25px rgba(120, 45, 80, 0.10);
+      backdrop-filter: blur(5px);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+
+    /* Seconda riga (2 immagini centrate) */
+    .gallery-centered-2 {
+      width: 30%;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    /* Terza riga (3 immagini centrate) */
+    .gallery-centered-3 {
+      width: 45%;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .gallery img {
+      flex: 1;
+      min-width: 0;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Miglioramento visualizzazione su smartphone */
+    @media (max-width: 600px) {
+      main {
+        width: calc(100% - 20px);
+        padding: 25px 0 40px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .gallery-container {
+        padding: 8px;
+        gap: 10px;
+      }
+
+      .gallery {
+        gap: 5px;
+      }
+
+      .gallery-centered-2 {
+        width: 45%;
+      }
+
+      .gallery-centered-3 {
+        width: 65%;
+      }
+
+      .entry {
+        padding: 20px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <h1>❤️</h1>
+
+    <!-- GALLERIA CON TRE RIGHE DI IMMAGINI -->
+    <div class="gallery-container">
+
+      <!-- Prima riga: 5 immagini -->
+      <div class="gallery">
+        <img src="IMMAGINI/S.png" alt="Foto 1">
+        <img src="IMMAGINI/O.png" alt="Foto 2">
+        <img src="IMMAGINI/F.png" alt="Foto 3">
+        <img src="IMMAGINI/I.png" alt="Foto 4">
+        <img src="IMMAGINI/A.png" alt="Foto 5">
+      </div>
+
+      <!-- Seconda riga: 2 immagini centrate -->
+      <div class="gallery gallery-centered-2">
+        <img src="IMMAGINI/T.png" alt="Foto 6">
+        <img src="IMMAGINI/I-2.png" alt="Foto 7">
+      </div>
+
+      <!-- Terza riga: 3 immagini centrate -->
+      <div class="gallery gallery-centered-3">
+        <img src="IMMAGINI/A-2.png" alt="Foto 8">
+        <img src="IMMAGINI/M.png" alt="Foto 9">
+        <img src="IMMAGINI/O-2.png" alt="Foto 10">
+      </div>
+
+    </div>
+
+
+    <section class="entry">
+      <div class="letter">S:</div>
+      <div class="place-row">
+        <div class="place">Fiume Mackenzie, Canada</div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/65F2QCZhBikN4a3r9?g_st=ac"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://science.nasa.gov/earth/earth-observatory/where-trucks-drive-on-the-river-89870/"
+         target="_blank"
+         rel="noopener noreferrer">
+        🌎 NASA Earth Observatory
+      </a>
+
+      <a href="https://it.wikipedia.org/wiki/Mackenzie"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia
+      </a>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">O:</div>
+
+      <div class="place-row">
+        <div class="place">Riserva Manicouagan, Canada</div>
+        <div class="date">31/08/2018</div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/2tAZgdAH8TsXxy3p9?g_st=ac"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://science.nasa.gov/earth/earth-observatory/a-modern-lake-in-an-ancient-crater-149414/"
+         target="_blank"
+         rel="noopener noreferrer">
+        🌎 NASA Earth Observatory
+      </a>
+
+      <a href="https://it.wikipedia.org/wiki/Lago_Manicouagan"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia (lago)
+      </a>
+
+      <a href="https://en.wikipedia.org/wiki/Manicouagan_Reservoir"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia (riserva)
+      </a>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">F:</div>
+
+      <div class="place-row">
+        <div class="place">
+          Australia
+          <span class="note-inline">(purtroppo non ho trovato dove😭)</span>
+        </div>
+      </div>
+
+      <div class="note">
+        Fotografia di Adam Voiland USGS/NASA Landsat 8 satellite del
+        <span class="date-inline">27/12/2015</span>
+      </div>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">I:</div>
+
+      <div class="place-row">
+        <div class="place">Holuhraun, Islanda</div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://science.nasa.gov/earth/earth-observatory/roiling-flows-on-holuhraun-lava-field-84316/"
+         target="_blank"
+         rel="noopener noreferrer">
+        🌎 NASA Earth Observatory
+      </a>
+
+      <a href="https://en.wikipedia.org/wiki/Holuhraun"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia
+      </a>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">A:</div>
+
+      <div class="place-row">
+        <div class="place">Fiume Yukon, Alaska (USA)</div>
+      </div>
+
+      <a href="https://goo.gl/maps/E1uRzrP4ne8vD5EZ7?g_st=ac"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://science.nasa.gov/earth/earth-observatory/yukon-delta-alaska-72762/"
+         target="_blank"
+         rel="noopener noreferrer">
+        🌎 NASA Earth Observatory
+      </a>
+
+      <a href="https://it.wikipedia.org/wiki/Yukon_(fiume)"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia
+      </a>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">T:</div>
+
+      <div class="place-row">
+        <div class="place">Oasi di Liwa, Emirati Arabi Uniti</div>
+      </div>
+
+      <a href="https://goo.gl/maps/toyd1mXMrBa1RmJbA?g_st=ac"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://science.nasa.gov/earth/earth-observatory/the-alphabet-from-orbit-letter-t-87237/"
+         target="_blank"
+         rel="noopener noreferrer">
+        🌎 NASA Earth Observatory
+      </a>
+
+      <a href="https://en.wikipedia.org/wiki/Liwa_Oasis"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia
+      </a>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">I:</div>
+
+      <div class="place">
+        Borgarbyggð, Islanda
+      </div>
+
+      <a href="https://goo.gl/maps/hiCQjUmXKaCTMJYh7?g_st=ac"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://it.wikipedia.org/wiki/Borgarbygg%C3%B0"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia
+      </a>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">A:</div>
+
+      <div class="place-row">
+        <div class="place">Lago Mjøsa, Norvegia</div>
+      </div>
+
+      <a href="https://goo.gl/maps/Tif1A7bmDqShNScg8?g_st=ac"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://yournameinlandsat.net/gallery/a/a-4-Lake-Mj%C3%B8sa-Norway"
+         target="_blank"
+         rel="noopener noreferrer">
+        🛰️ Your Name in Landsat
+      </a>
+
+      <a href="https://it.wikipedia.org/wiki/Mj%C3%B8sa"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia
+      </a>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">M:</div>
+
+      <div class="place-row">
+        <div class="place">Tian Shan, Kyrgyzstan</div>
+      </div>
+
+      <a href="https://goo.gl/maps/16QMMZggQdha9PSy9?g_st=ac"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://yournameinlandsat.net/gallery/m/m-2-TianShanMountains-Kyrgyzstan"
+         target="_blank"
+         rel="noopener noreferrer">
+        🛰️ Your Name in Landsat
+      </a>
+
+      <a href="https://it.wikipedia.org/wiki/Tian_Shan"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia
+      </a>
+    </section>
+
+
+    <section class="entry">
+      <div class="letter">O:</div>
+
+      <div class="place">
+        Lago Crater, USA
+      </div>
+
+      <a href="https://goo.gl/maps/u3drpR2PrFEAE3jeA?g_st=ac"
+         target="_blank"
+         rel="noopener noreferrer">
+        📍 Google Maps
+      </a>
+
+      <a href="https://science.nasa.gov/earth/earth-observatory/a-clear-view-of-crater-lake-151161/"
+         target="_blank"
+         rel="noopener noreferrer">
+        🌎 NASA Earth Observatory
+      </a>
+
+      <a href="https://it.wikipedia.org/wiki/Lago_Crater"
+         target="_blank"
+         rel="noopener noreferrer">
+        📖 Wikipedia
+      </a>
+    </section>
+
+  </main>
+
+</body>
+</html>
