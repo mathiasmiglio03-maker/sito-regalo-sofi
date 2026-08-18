@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>❤️</title>
+  <title>Sofia ti amo</title>
 
   <style>
     :root {
@@ -15,6 +15,10 @@
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -46,6 +50,13 @@
       margin: 18px 0;
       box-shadow: 0 8px 25px rgba(120, 45, 80, 0.10);
       backdrop-filter: blur(5px);
+      transition: background-color 0.8s ease, transform 0.3s ease;
+    }
+
+    /* Effetto di evidenziatura in giallo per la casella */
+    .entry.highlight {
+      background-color: #fff2a8 !important;
+      transform: scale(1.02);
     }
 
     .letter {
@@ -88,22 +99,6 @@
       text-decoration: underline;
     }
 
-    .note {
-      margin: 10px 0;
-    }
-
-    .note-inline {
-      font-size: 1rem;
-      font-weight: 400;
-      opacity: 0.8;
-    }
-
-    .date-inline {
-      font-size: 1rem;
-      font-weight: 400;
-      opacity: 0.8;
-    }
-
     /* --- CONTENITORE SCHEDA PER LE IMMAGINI --- */
     .gallery-container {
       background: var(--card);
@@ -115,7 +110,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 32px;
     }
 
     .gallery {
@@ -126,9 +121,14 @@
 
     /* Seconda riga (2 immagini centrate) */
     .gallery-centered-2 {
-      width: 30%;
+      width: calc((2 / 5) * 90%);
       margin: 0 auto;
       justify-content: center;
+    }
+
+    .gallery-centered-2 img {
+      transform: scaleY(0.99);
+      transform-origin: center;
     }
 
     /* Terza riga (3 immagini centrate) */
@@ -148,6 +148,110 @@
       display: block;
     }
 
+    .clickable-img {
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .clickable-img:hover {
+      opacity: 0.85;
+      transform: scale(1.03);
+    }
+
+    /* --- MODALE OPZIONI IMMAGINE --- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      width: min(320px, 90%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-btn {
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: var(--pink);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s ease;
+      display: block;
+      cursor: pointer;
+    }
+
+    .modal-btn:hover {
+      background: var(--pink-dark);
+      color: white;
+      text-decoration: none;
+    }
+
+    .modal-close {
+      margin-top: 6px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      opacity: 0.6;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* --- VISUALIZZATORE IMMAGINE A TUTTO SCHERMO --- */
+    .fullscreen-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .fullscreen-overlay img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      object-fit: contain;
+      display: block;
+      margin: auto;
+    }
+
+    .fullscreen-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+    }
+
     /* Miglioramento visualizzazione su smartphone */
     @media (max-width: 600px) {
       main {
@@ -156,13 +260,13 @@
       }
 
       h1 {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
         margin-bottom: 20px;
       }
 
       .gallery-container {
         padding: 8px;
-        gap: 10px;
+        gap: 20px;
       }
 
       .gallery {
@@ -170,7 +274,7 @@
       }
 
       .gallery-centered-2 {
-        width: 45%;
+        width: calc((2 / 5) * 90%);
       }
 
       .gallery-centered-3 {
@@ -187,297 +291,221 @@
 <body>
 
   <main>
+    <h1>Sofia Ti Amo ❤️</h1>
 
-    <h1>❤️</h1>
-
-    <!-- GALLERIA CON TRE RIGHE DI IMMAGINI -->
+    <!-- GALLERIA CON PERCORSI OTTIMIZZATI PER GITHUB -->
     <div class="gallery-container">
 
-      <!-- Prima riga: 5 immagini -->
+      <!-- Prima riga: 5 immagini (S O F I A) -->
       <div class="gallery">
-        <img src="IMMAGINI/S.png" alt="Foto 1">
-        <img src="IMMAGINI/O.png" alt="Foto 2">
-        <img src="IMMAGINI/F.png" alt="Foto 3">
-        <img src="IMMAGINI/I.png" alt="Foto 4">
-        <img src="IMMAGINI/A.png" alt="Foto 5">
+        <img src="IMMAGINI/S.png" alt="Lettera S" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/S%20intera.png', 'entry-S1')">
+        <img src="IMMAGINI/O.png" alt="Lettera O" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/O%20intera.png', 'entry-O1')">
+        <img src="IMMAGINI/F.png" alt="Lettera F" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/F%20intera.png', 'entry-F1')">
+        <img src="IMMAGINI/I.png" alt="Lettera I" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/I%20intera.png', 'entry-I1')">
+        <img src="IMMAGINI/A.png" alt="Lettera A" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/A%20intera.png', 'entry-A1')">
       </div>
 
-      <!-- Seconda riga: 2 immagini centrate -->
+      <!-- Seconda riga: 2 immagini centrate (T I) -->
       <div class="gallery gallery-centered-2">
-        <img src="IMMAGINI/T.png" alt="Foto 6">
-        <img src="IMMAGINI/I-2.png" alt="Foto 7">
+        <img src="IMMAGINI/T.png" alt="Lettera T" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/T%20intera.png', 'entry-T1')">
+        <img src="IMMAGINI/I-2.png" alt="Lettera I" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/I-2%20intera.png', 'entry-I2')">
       </div>
 
-      <!-- Terza riga: 3 immagini centrate -->
+      <!-- Terza riga: 3 immagini centrate (A M O) -->
       <div class="gallery gallery-centered-3">
-        <img src="IMMAGINI/A-2.png" alt="Foto 8">
-        <img src="IMMAGINI/M.png" alt="Foto 9">
-        <img src="IMMAGINI/O-2.png" alt="Foto 10">
+        <img src="IMMAGINI/A-2.png" alt="Lettera A" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/A-2%20intera.png', 'entry-A2')">
+        <img src="IMMAGINI/M.png" alt="Lettera M" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/M%20intera.png', 'entry-M1')">
+        <img src="IMMAGINI/O-2.png" alt="Lettera O" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/O-2%20intera.png', 'entry-O2')">
       </div>
 
     </div>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-S1">
       <div class="letter">S:</div>
       <div class="place-row">
         <div class="place">Fiume Mackenzie, Canada</div>
       </div>
 
-      <a href="https://maps.app.goo.gl/65F2QCZhBikN4a3r9?g_st=ac"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://science.nasa.gov/earth/earth-observatory/where-trucks-drive-on-the-river-89870/"
-         target="_blank"
-         rel="noopener noreferrer">
-        🌎 NASA Earth Observatory
-      </a>
-
-      <a href="https://it.wikipedia.org/wiki/Mackenzie"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia
-      </a>
+      <a href="https://maps.app.goo.gl/65F2QCZhBikN4a3r9?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://science.nasa.gov/earth/earth-observatory/where-trucks-drive-on-the-river-89870/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+      <a href="https://it.wikipedia.org/wiki/Mackenzie" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-O1">
       <div class="letter">O:</div>
-
       <div class="place-row">
         <div class="place">Riserva Manicouagan, Canada</div>
         <div class="date">31/08/2018</div>
       </div>
 
-      <a href="https://maps.app.goo.gl/2tAZgdAH8TsXxy3p9?g_st=ac"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://science.nasa.gov/earth/earth-observatory/a-modern-lake-in-an-ancient-crater-149414/"
-         target="_blank"
-         rel="noopener noreferrer">
-        🌎 NASA Earth Observatory
-      </a>
-
-      <a href="https://it.wikipedia.org/wiki/Lago_Manicouagan"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia (lago)
-      </a>
-
-      <a href="https://en.wikipedia.org/wiki/Manicouagan_Reservoir"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia (riserva)
-      </a>
+      <a href="https://maps.app.goo.gl/2tAZgdAH8TsXxy3p9?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://science.nasa.gov/earth/earth-observatory/a-modern-lake-in-an-ancient-crater-149414/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+      <a href="https://it.wikipedia.org/wiki/Lago_Manicouagan" target="_blank" rel="noopener noreferrer">📖 Wikipedia (lago)</a>
+      <a href="https://en.wikipedia.org/wiki/Manicouagan_Reservoir" target="_blank" rel="noopener noreferrer">📖 Wikipedia (riserva)</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-F1">
       <div class="letter">F:</div>
-
       <div class="place-row">
-        <div class="place">
-          Australia
-          <span class="note-inline">(purtroppo non ho trovato dove😭)</span>
-        </div>
+        <div class="place">Parco nazionale Yalgorup, Australia</div>
+        <div class="date">27/12/2015</div>
       </div>
 
-      <div class="note">
-        Fotografia di Adam Voiland USGS/NASA Landsat 8 satellite del
-        <span class="date-inline">27/12/2015</span>
-      </div>
+      <a href="https://www.google.com/maps/place/32%C2%B045'00.0%22S+115%C2%B042'00.0%22E/@-32.75,115.7,12z" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://en.wikipedia.org/wiki/Yalgorup_National_Park" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-I1">
       <div class="letter">I:</div>
-
       <div class="place-row">
         <div class="place">Holuhraun, Islanda</div>
       </div>
 
-      <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://science.nasa.gov/earth/earth-observatory/roiling-flows-on-holuhraun-lava-field-84316/"
-         target="_blank"
-         rel="noopener noreferrer">
-        🌎 NASA Earth Observatory
-      </a>
-
-      <a href="https://en.wikipedia.org/wiki/Holuhraun"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia
-      </a>
+      <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://science.nasa.gov/earth/earth-observatory/roiling-flows-on-holuhraun-lava-field-84316/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+      <a href="https://en.wikipedia.org/wiki/Holuhraun" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-A1">
       <div class="letter">A:</div>
-
       <div class="place-row">
         <div class="place">Fiume Yukon, Alaska (USA)</div>
       </div>
 
-      <a href="https://goo.gl/maps/E1uRzrP4ne8vD5EZ7?g_st=ac"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://science.nasa.gov/earth/earth-observatory/yukon-delta-alaska-72762/"
-         target="_blank"
-         rel="noopener noreferrer">
-        🌎 NASA Earth Observatory
-      </a>
-
-      <a href="https://it.wikipedia.org/wiki/Yukon_(fiume)"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia
-      </a>
+      <a href="https://goo.gl/maps/E1uRzrP4ne8vD5EZ7?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://science.nasa.gov/earth/earth-observatory/yukon-delta-alaska-72762/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+      <a href="https://it.wikipedia.org/wiki/Yukon_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-T1">
       <div class="letter">T:</div>
-
       <div class="place-row">
         <div class="place">Oasi di Liwa, Emirati Arabi Uniti</div>
       </div>
 
-      <a href="https://goo.gl/maps/toyd1mXMrBa1RmJbA?g_st=ac"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://science.nasa.gov/earth/earth-observatory/the-alphabet-from-orbit-letter-t-87237/"
-         target="_blank"
-         rel="noopener noreferrer">
-        🌎 NASA Earth Observatory
-      </a>
-
-      <a href="https://en.wikipedia.org/wiki/Liwa_Oasis"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia
-      </a>
+      <a href="https://goo.gl/maps/toyd1mXMrBa1RmJbA?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://science.nasa.gov/earth/earth-observatory/the-alphabet-from-orbit-letter-t-87237/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+      <a href="https://en.wikipedia.org/wiki/Liwa_Oasis" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-I2">
       <div class="letter">I:</div>
+      <div class="place">Borgarbyggð, Islanda</div>
 
-      <div class="place">
-        Borgarbyggð, Islanda
-      </div>
-
-      <a href="https://goo.gl/maps/hiCQjUmXKaCTMJYh7?g_st=ac"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://it.wikipedia.org/wiki/Borgarbygg%C3%B0"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia
-      </a>
+      <a href="https://goo.gl/maps/hiCQjUmXKaCTMJYh7?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://it.wikipedia.org/wiki/Borgarbygg%C3%B0" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-A2">
       <div class="letter">A:</div>
-
       <div class="place-row">
         <div class="place">Lago Mjøsa, Norvegia</div>
       </div>
 
-      <a href="https://goo.gl/maps/Tif1A7bmDqShNScg8?g_st=ac"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://yournameinlandsat.net/gallery/a/a-4-Lake-Mj%C3%B8sa-Norway"
-         target="_blank"
-         rel="noopener noreferrer">
-        🛰️ Your Name in Landsat
-      </a>
-
-      <a href="https://it.wikipedia.org/wiki/Mj%C3%B8sa"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia
-      </a>
+      <a href="https://goo.gl/maps/Tif1A7bmDqShNScg8?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://yournameinlandsat.net/gallery/a/a-4-Lake-Mj%C3%B8sa-Norway" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
+      <a href="https://it.wikipedia.org/wiki/Mj%C3%B8sa" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-M1">
       <div class="letter">M:</div>
-
       <div class="place-row">
         <div class="place">Tian Shan, Kyrgyzstan</div>
       </div>
 
-      <a href="https://goo.gl/maps/16QMMZggQdha9PSy9?g_st=ac"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://yournameinlandsat.net/gallery/m/m-2-TianShanMountains-Kyrgyzstan"
-         target="_blank"
-         rel="noopener noreferrer">
-        🛰️ Your Name in Landsat
-      </a>
-
-      <a href="https://it.wikipedia.org/wiki/Tian_Shan"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia
-      </a>
+      <a href="https://goo.gl/maps/16QMMZggQdha9PSy9?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://yournameinlandsat.net/gallery/m/m-2-TianShanMountains-Kyrgyzstan" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
+      <a href="https://it.wikipedia.org/wiki/Tian_Shan" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
-    <section class="entry">
+    <section class="entry" id="entry-O2">
       <div class="letter">O:</div>
+      <div class="place">Lago Crater, USA</div>
 
-      <div class="place">
-        Lago Crater, USA
-      </div>
-
-      <a href="https://goo.gl/maps/u3drpR2PrFEAE3jeA?g_st=ac"
-         target="_blank"
-         rel="noopener noreferrer">
-        📍 Google Maps
-      </a>
-
-      <a href="https://science.nasa.gov/earth/earth-observatory/a-clear-view-of-crater-lake-151161/"
-         target="_blank"
-         rel="noopener noreferrer">
-        🌎 NASA Earth Observatory
-      </a>
-
-      <a href="https://it.wikipedia.org/wiki/Lago_Crater"
-         target="_blank"
-         rel="noopener noreferrer">
-        📖 Wikipedia
-      </a>
+      <a href="https://goo.gl/maps/u3drpR2PrFEAE3jeA?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://science.nasa.gov/earth/earth-observatory/a-clear-view-of-crater-lake-151161/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+      <a href="https://it.wikipedia.org/wiki/Lago_Crater" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
   </main>
+
+  <!-- MODALE POPUP PER LE SCELTE -->
+  <div id="imageModal" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-btn" onclick="showFullScreen()">Visualizza immagine intera</div>
+      <div class="modal-btn" onclick="goToAndHighlight()">Scopri di più 🤓</div>
+      <button class="modal-close" onclick="closeModal()">Chiudi</button>
+    </div>
+  </div>
+
+  <!-- OVERLAY IMMAGINE A TUTTO SCHERMO -->
+  <div id="fullscreenView" class="fullscreen-overlay" onclick="closeFullScreen()">
+    <span class="fullscreen-close">&times;</span>
+    <img id="fullscreenImg" src="" alt="Immagine a tutto schermo">
+  </div>
+
+  <script>
+    let activeFullImageSrc = '';
+    let activeTargetId = '';
+
+    function openModal(fullImageSrc, targetSectionId) {
+      activeFullImageSrc = fullImageSrc;
+      activeTargetId = targetSectionId;
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+
+    function showFullScreen() {
+      closeModal();
+      if (!activeFullImageSrc) return;
+
+      const fsOverlay = document.getElementById('fullscreenView');
+      const fsImg = document.getElementById('fullscreenImg');
+      
+      fsImg.src = activeFullImageSrc;
+      fsOverlay.style.display = 'flex';
+    }
+
+    function closeFullScreen() {
+      document.getElementById('fullscreenView').style.display = 'none';
+    }
+
+    function goToAndHighlight() {
+      closeModal();
+      if (!activeTargetId) return;
+
+      const targetElement = document.getElementById(activeTargetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetElement.classList.add('highlight');
+
+        setTimeout(() => {
+          targetElement.classList.remove('highlight');
+        }, 2500);
+      }
+    }
+
+    /* Chiusura finestre premendo il tasto ESC */
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeModal();
+        closeFullScreen();
+      }
+    });
+  </script>
 
 </body>
 </html>
