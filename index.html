@@ -36,13 +36,6 @@
       padding: 42px 0 56px;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 3rem;
-      margin: 0 0 30px;
-      font-weight: 500;
-    }
-
     .entry {
       background: var(--card);
       border-radius: 20px;
@@ -259,11 +252,6 @@
         padding: 25px 0 40px;
       }
 
-      h1 {
-        font-size: 2.3rem;
-        margin-bottom: 20px;
-      }
-
       .gallery-container {
         padding: 8px;
         gap: 20px;
@@ -291,31 +279,30 @@
 <body>
 
   <main>
-    <h1>Sofia Ti Amo ❤️</h1>
 
-    <!-- GALLERIA CON PERCORSI OTTIMIZZATI PER GITHUB -->
+    <!-- GALLERIA CON ESTENSIONI E PERCORSI CORRETTI PER GITHUB -->
     <div class="gallery-container">
 
       <!-- Prima riga: 5 immagini (S O F I A) -->
       <div class="gallery">
-        <img src="IMMAGINI/S.png" alt="Lettera S" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/S%20intera.png', 'entry-S1')">
-        <img src="IMMAGINI/O.png" alt="Lettera O" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/O%20intera.png', 'entry-O1')">
-        <img src="IMMAGINI/F.png" alt="Lettera F" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/F%20intera.png', 'entry-F1')">
-        <img src="IMMAGINI/I.png" alt="Lettera I" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/I%20intera.png', 'entry-I1')">
-        <img src="IMMAGINI/A.png" alt="Lettera A" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/A%20intera.png', 'entry-A1')">
+        <img src="IMMAGINI/S.png" alt="Lettera S" class="clickable-img" onclick="openModal('IMMAGINI intere/S intera.jpg', 'entry-S1')">
+        <img src="IMMAGINI/O.png" alt="Lettera O" class="clickable-img" onclick="openModal('IMMAGINI intere/O intera.jpg', 'entry-O1')">
+        <img src="IMMAGINI/F.png" alt="Lettera F" class="clickable-img" onclick="openModal('IMMAGINI intere/F intera.jpg', 'entry-F1')">
+        <img src="IMMAGINI/I.png" alt="Lettera I" class="clickable-img" onclick="openModal('IMMAGINI intere/I intera.jpg', 'entry-I1')">
+        <img src="IMMAGINI/A.png" alt="Lettera A" class="clickable-img" onclick="openModal('IMMAGINI intere/A intera.png', 'entry-A1')">
       </div>
 
       <!-- Seconda riga: 2 immagini centrate (T I) -->
       <div class="gallery gallery-centered-2">
-        <img src="IMMAGINI/T.png" alt="Lettera T" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/T%20intera.png', 'entry-T1')">
-        <img src="IMMAGINI/I-2.png" alt="Lettera I" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/I-2%20intera.png', 'entry-I2')">
+        <img src="IMMAGINI/T.png" alt="Lettera T" class="clickable-img" onclick="openModal('IMMAGINI intere/T intera.jpg', 'entry-T1')">
+        <img src="IMMAGINI/I-2.png" alt="Lettera I" class="clickable-img" onclick="openModal('IMMAGINI intere/I-2 intera.jpg', 'entry-I2')">
       </div>
 
       <!-- Terza riga: 3 immagini centrate (A M O) -->
       <div class="gallery gallery-centered-3">
-        <img src="IMMAGINI/A-2.png" alt="Lettera A" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/A-2%20intera.png', 'entry-A2')">
-        <img src="IMMAGINI/M.png" alt="Lettera M" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/M%20intera.png', 'entry-M1')">
-        <img src="IMMAGINI/O-2.png" alt="Lettera O" class="clickable-img" onclick="openModal('IMMAGINI%20INTERE/O-2%20intera.png', 'entry-O2')">
+        <img src="IMMAGINI/A-2.png" alt="Lettera A" class="clickable-img" onclick="openModal('IMMAGINI intere/A-2 intera.png', 'entry-A2')">
+        <img src="IMMAGINI/M.png" alt="Lettera M" class="clickable-img" onclick="openModal('IMMAGINI intere/M intera.jpg', 'entry-M1')">
+        <img src="IMMAGINI/O-2.png" alt="Lettera O" class="clickable-img" onclick="openModal('IMMAGINI intere/O-2 intera.jpg', 'entry-O2')">
       </div>
 
     </div>
@@ -475,7 +462,8 @@
       const fsOverlay = document.getElementById('fullscreenView');
       const fsImg = document.getElementById('fullscreenImg');
       
-      fsImg.src = activeFullImageSrc;
+      // Converte gli spazi per renderli leggibili dal browser
+      fsImg.src = encodeURI(activeFullImageSrc);
       fsOverlay.style.display = 'flex';
     }
 
