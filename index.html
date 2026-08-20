@@ -43,10 +43,9 @@
       margin: 18px 0;
       box-shadow: 0 8px 25px rgba(120, 45, 80, 0.10);
       backdrop-filter: blur(5px);
-      transition: background-color 0.8s ease, transform 0.3s ease;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
-    /* Effetto di evidenziatura in giallo per la casella */
     .entry.highlight {
       background-color: #fff2a8 !important;
       transform: scale(1.02);
@@ -57,6 +56,28 @@
       font-weight: 700;
       color: var(--pink-dark);
       margin-bottom: 8px;
+    }
+
+    #entry-heart {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .letter-heart {
+      font-size: 2.8rem;
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+
+    .fantasy-text {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text);
+      opacity: 0.85;
+      margin: 4px 0 8px;
     }
 
     .place-row {
@@ -75,7 +96,7 @@
     .date {
       font-size: 1rem;
       margin-bottom: 12px;
-      opacity: 0.8;
+      color: var(--text);
       white-space: nowrap;
     }
 
@@ -92,18 +113,34 @@
       text-decoration: underline;
     }
 
-    /* --- CONTENITORE SCHEDA PER LE IMMAGINI --- */
+    .home-link {
+      font-size: 2.5rem;
+      line-height: 1;
+      display: inline-block;
+      margin-top: 2px;
+    }
+
+    .divider-space {
+      text-align: center;
+      margin: 50px 0;
+    }
+
+    .divider-emoji {
+      font-size: 2.5rem;
+      display: block;
+    }
+
     .gallery-container {
       background: var(--card);
       border-radius: 20px;
-      padding: 12px;
+      padding: 16px 12px;
       margin: 18px 0 25px;
       box-shadow: 0 8px 25px rgba(120, 45, 80, 0.10);
       backdrop-filter: blur(5px);
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 48px;
     }
 
     .gallery {
@@ -112,21 +149,20 @@
       width: 100%;
     }
 
-    /* Seconda riga (2 immagini centrate) */
     .gallery-centered-2 {
       width: calc((2 / 5) * 90%);
       margin: 0 auto;
       justify-content: center;
     }
 
-    .gallery-centered-2 img {
-      transform: scaleY(0.99);
-      transform-origin: center;
-    }
-
-    /* Terza riga (3 immagini centrate) */
     .gallery-centered-3 {
       width: 45%;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .gallery-centered-1 {
+      width: 28%;
       margin: 0 auto;
       justify-content: center;
     }
@@ -151,7 +187,7 @@
       transform: scale(1.03);
     }
 
-    /* --- MODALE OPZIONI IMMAGINE --- */
+    /* MODALE OPZIONI PRINCIPALI */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -170,7 +206,7 @@
       background: #ffffff;
       border-radius: 16px;
       padding: 24px;
-      width: min(320px, 90%);
+      width: min(340px, 90%);
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       text-align: center;
       display: flex;
@@ -207,7 +243,31 @@
       font-size: 0.9rem;
     }
 
-    /* --- VISUALIZZATORE IMMAGINE A TUTTO SCHERMO --- */
+    /* STILE PER LA GRIGLIA DI IMMAGINI NEI MODALI DI SCELTA */
+    .switch-grid {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .switch-grid img {
+      width: 60px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .switch-grid img:hover {
+      transform: scale(1.05);
+      border-color: var(--pink-dark);
+    }
+
+    /* VISUALIZZATORE IMMAGINE A TUTTO SCHERMO */
     .fullscreen-overlay {
       display: none;
       position: fixed;
@@ -245,7 +305,6 @@
       user-select: none;
     }
 
-    /* Miglioramento visualizzazione su smartphone */
     @media (max-width: 600px) {
       main {
         width: calc(100% - 20px);
@@ -253,8 +312,8 @@
       }
 
       .gallery-container {
-        padding: 8px;
-        gap: 20px;
+        padding: 12px 8px;
+        gap: 32px;
       }
 
       .gallery {
@@ -269,8 +328,28 @@
         width: 65%;
       }
 
+      .gallery-centered-1 {
+        width: 40%;
+      }
+
       .entry {
         padding: 20px 18px;
+      }
+
+      .divider-space {
+        margin: 35px 0;
+      }
+
+      .letter-heart {
+        font-size: 2.4rem;
+      }
+
+      .fantasy-text {
+        font-size: 0.85rem;
+      }
+
+      .home-link {
+        font-size: 25px;
       }
     }
   </style>
@@ -280,43 +359,46 @@
 
   <main>
 
-    <!-- GALLERIA CON ESTENSIONI E PERCORSI CORRETTI PER GITHUB -->
     <div class="gallery-container">
 
-      <!-- Prima riga: 5 immagini (S O F I A) -->
       <div class="gallery">
-        <img src="IMMAGINI/S.png" alt="Lettera S" class="clickable-img" onclick="openModal('IMMAGINI intere/S intera.jpg', 'entry-S1')">
-        <img src="IMMAGINI/O.png" alt="Lettera O" class="clickable-img" onclick="openModal('IMMAGINI intere/O intera.jpg', 'entry-O1')">
-        <img src="IMMAGINI/F.png" alt="Lettera F" class="clickable-img" onclick="openModal('IMMAGINI intere/F intera.jpg', 'entry-F1')">
-        <img src="IMMAGINI/I.png" alt="Lettera I" class="clickable-img" onclick="openModal('IMMAGINI intere/I intera.jpg', 'entry-I1')">
-        <img src="IMMAGINI/A.png" alt="Lettera A" class="clickable-img" onclick="openModal('IMMAGINI intere/A intera.png', 'entry-A1')">
+        <img id="img-S1" src="IMMAGINI/S.png" alt="Lettera S" class="clickable-img" onclick="openModalForS()">
+        <img id="img-O1" src="IMMAGINI/O.png" alt="Lettera O" class="clickable-img" onclick="openModalForO1()">
+        <img id="img-F1" src="IMMAGINI/F.png" alt="Lettera F" class="clickable-img" onclick="openModalForF()">
+        <img id="img-I1" src="IMMAGINI/I.png" alt="Lettera I" class="clickable-img" onclick="openModalForI1()">
+        <img id="img-A1" src="IMMAGINI/A.png" alt="Lettera A" class="clickable-img" onclick="openModalForA1()">
       </div>
 
-      <!-- Seconda riga: 2 immagini centrate (T I) -->
       <div class="gallery gallery-centered-2">
-        <img src="IMMAGINI/T.png" alt="Lettera T" class="clickable-img" onclick="openModal('IMMAGINI intere/T intera.jpg', 'entry-T1')">
-        <img src="IMMAGINI/I-2.png" alt="Lettera I" class="clickable-img" onclick="openModal('IMMAGINI intere/I-2 intera.jpg', 'entry-I2')">
+        <img src="IMMAGINI/T.png" alt="Lettera T" class="clickable-img" onclick="openModal('IMMAGINI intere/T intera.jpg', 'entry-T1', 'Scopri di più 🤓')">
+        <img id="img-I2" src="IMMAGINI/I-2.png" alt="Lettera I" class="clickable-img" onclick="openModalForI2()">
       </div>
 
-      <!-- Terza riga: 3 immagini centrate (A M O) -->
       <div class="gallery gallery-centered-3">
-        <img src="IMMAGINI/A-2.png" alt="Lettera A" class="clickable-img" onclick="openModal('IMMAGINI intere/A-2 intera.png', 'entry-A2')">
-        <img src="IMMAGINI/M.png" alt="Lettera M" class="clickable-img" onclick="openModal('IMMAGINI intere/M intera.jpg', 'entry-M1')">
-        <img src="IMMAGINI/O-2.png" alt="Lettera O" class="clickable-img" onclick="openModal('IMMAGINI intere/O-2 intera.jpg', 'entry-O2')">
+        <img id="img-A2" src="IMMAGINI/A-2.png" alt="Lettera A" class="clickable-img" onclick="openModalForA2()">
+        <img id="img-M1" src="IMMAGINI/M.png" alt="Lettera M" class="clickable-img" onclick="openModalForM()">
+        <img id="img-O2" src="IMMAGINI/O-2.png" alt="Lettera O" class="clickable-img" onclick="openModalForO2()">
+      </div>
+
+      <div class="gallery gallery-centered-1">
+        <img src="IMMAGINI/Cuore 2.JPG" alt="Mappa Cuore 2" class="clickable-img" onclick="openModal('IMMAGINI intere/Cuore 2 intera.JPG', 'entry-heart', '?')">
       </div>
 
     </div>
 
 
+    <!-- CASELLA S DINAMICA -->
     <section class="entry" id="entry-S1">
       <div class="letter">S:</div>
       <div class="place-row">
-        <div class="place">Fiume Mackenzie, Canada</div>
+        <div class="place" id="place-S1">Fiume Mackenzie, Canada</div>
       </div>
 
-      <a href="https://maps.app.goo.gl/65F2QCZhBikN4a3r9?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
-      <a href="https://science.nasa.gov/earth/earth-observatory/where-trucks-drive-on-the-river-89870/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
-      <a href="https://it.wikipedia.org/wiki/Mackenzie" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      <div id="links-S1">
+        <a href="https://maps.app.goo.gl/65F2QCZhBikN4a3r9?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+        <a href="https://science.nasa.gov/earth/earth-observatory/where-trucks-drive-on-the-river-89870/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+        <a href="https://it.wikipedia.org/wiki/Mackenzie" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      </div>
     </section>
 
 
@@ -324,50 +406,64 @@
       <div class="letter">O:</div>
       <div class="place-row">
         <div class="place">Riserva Manicouagan, Canada</div>
-        <div class="date">31/08/2018</div>
+        <div class="date" id="date-O1">31/08/2018</div>
       </div>
 
-      <a href="https://maps.app.goo.gl/2tAZgdAH8TsXxy3p9?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://maps.app.goo.gl/2tAZgdAH8TsXxy3p9?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
       <a href="https://science.nasa.gov/earth/earth-observatory/a-modern-lake-in-an-ancient-crater-149414/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
       <a href="https://it.wikipedia.org/wiki/Lago_Manicouagan" target="_blank" rel="noopener noreferrer">📖 Wikipedia (lago)</a>
       <a href="https://en.wikipedia.org/wiki/Manicouagan_Reservoir" target="_blank" rel="noopener noreferrer">📖 Wikipedia (riserva)</a>
     </section>
 
 
+    <!-- CASELLA F DINAMICA -->
     <section class="entry" id="entry-F1">
       <div class="letter">F:</div>
       <div class="place-row">
-        <div class="place">Parco nazionale Yalgorup, Australia</div>
-        <div class="date">27/12/2015</div>
+        <div class="place" id="place-F1">Parco nazionale Yalgorup, Australia</div>
+        <div class="date" id="date-F1">27/12/2015</div>
       </div>
 
-      <a href="https://www.google.com/maps/place/32%C2%B045'00.0%22S+115%C2%B042'00.0%22E/@-32.75,115.7,12z" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
-      <a href="https://en.wikipedia.org/wiki/Yalgorup_National_Park" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      <div id="links-F1">
+        <a href="https://www.google.com/maps/place/32%C2%B045'00.0%22S+115%C2%B042'00.0%22E/@-32.75,115.7,12z" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+        <a href="https://en.wikipedia.org/wiki/Yalgorup_National_Park" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      </div>
     </section>
 
 
+    <!-- CASELLA I DINAMICA -->
     <section class="entry" id="entry-I1">
       <div class="letter">I:</div>
       <div class="place-row">
-        <div class="place">Holuhraun, Islanda</div>
+        <div class="place" id="place-I1">Holuhraun, Islanda</div>
+        <div class="date" id="date-I1" style="display: none;"></div>
       </div>
 
-      <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
-      <a href="https://science.nasa.gov/earth/earth-observatory/roiling-flows-on-holuhraun-lava-field-84316/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
-      <a href="https://en.wikipedia.org/wiki/Holuhraun" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      <div id="links-I1">
+        <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+        <a href="https://science.nasa.gov/earth/earth-observatory/roiling-flows-on-holuhraun-lava-field-84316/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+        <a href="https://en.wikipedia.org/wiki/Holuhraun" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      </div>
     </section>
 
 
+    <!-- CASELLA A DINAMICA -->
     <section class="entry" id="entry-A1">
       <div class="letter">A:</div>
       <div class="place-row">
-        <div class="place">Fiume Yukon, Alaska (USA)</div>
+        <div class="place" id="place-A1">Fiume Yukon, Alaska (USA)</div>
       </div>
 
-      <a href="https://goo.gl/maps/E1uRzrP4ne8vD5EZ7?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
-      <a href="https://science.nasa.gov/earth/earth-observatory/yukon-delta-alaska-72762/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
-      <a href="https://it.wikipedia.org/wiki/Yukon_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      <div id="links-A1">
+        <a href="https://goo.gl/maps/E1uRzrP4ne8vD5EZ7?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+        <a href="https://science.nasa.gov/earth/earth-observatory/yukon-delta-alaska-72762/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+        <a href="https://it.wikipedia.org/wiki/Yukon_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      </div>
     </section>
+
+    <div class="divider-space">
+      <span class="divider-emoji">✈️</span>
+    </div>
 
 
     <section class="entry" id="entry-T1">
@@ -376,42 +472,58 @@
         <div class="place">Oasi di Liwa, Emirati Arabi Uniti</div>
       </div>
 
-      <a href="https://goo.gl/maps/toyd1mXMrBa1RmJbA?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://goo.gl/maps/toyd1mXMrBa1RmJbA?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
       <a href="https://science.nasa.gov/earth/earth-observatory/the-alphabet-from-orbit-letter-t-87237/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
       <a href="https://en.wikipedia.org/wiki/Liwa_Oasis" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
 
+    <!-- CASELLA I2 DINAMICA -->
     <section class="entry" id="entry-I2">
       <div class="letter">I:</div>
-      <div class="place">Borgarbyggð, Islanda</div>
+      <div class="place-row">
+        <div class="place" id="place-I2">Borgarbyggð, Islanda</div>
+        <div class="date" id="date-I2" style="display: none;"></div>
+      </div>
 
-      <a href="https://goo.gl/maps/hiCQjUmXKaCTMJYh7?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
-      <a href="https://it.wikipedia.org/wiki/Borgarbygg%C3%B0" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      <div id="links-I2">
+        <a href="https://goo.gl/maps/hiCQjUmXKaCTMJYh7?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+        <a href="https://it.wikipedia.org/wiki/Borgarbygg%C3%B0" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      </div>
     </section>
 
+    <div class="divider-space">
+      <span class="divider-emoji">✈️</span>
+    </div>
 
+
+    <!-- CASELLA A2 DINAMICA -->
     <section class="entry" id="entry-A2">
       <div class="letter">A:</div>
       <div class="place-row">
-        <div class="place">Lago Mjøsa, Norvegia</div>
+        <div class="place" id="place-A2">Lago Mjøsa, Norvegia</div>
       </div>
 
-      <a href="https://goo.gl/maps/Tif1A7bmDqShNScg8?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
-      <a href="https://yournameinlandsat.net/gallery/a/a-4-Lake-Mj%C3%B8sa-Norway" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
-      <a href="https://it.wikipedia.org/wiki/Mj%C3%B8sa" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      <div id="links-A2">
+        <a href="https://goo.gl/maps/Tif1A7bmDqShNScg8?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+        <a href="https://yournameinlandsat.net/gallery/a/a-4-Lake-Mj%C3%B8sa-Norway" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
+        <a href="https://it.wikipedia.org/wiki/Mj%C3%B8sa" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      </div>
     </section>
 
 
+    <!-- CASELLA M DINAMICA -->
     <section class="entry" id="entry-M1">
       <div class="letter">M:</div>
       <div class="place-row">
-        <div class="place">Tian Shan, Kyrgyzstan</div>
+        <div class="place" id="place-M1">Tian Shan, Kyrgyzstan</div>
       </div>
 
-      <a href="https://goo.gl/maps/16QMMZggQdha9PSy9?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
-      <a href="https://yournameinlandsat.net/gallery/m/m-2-TianShanMountains-Kyrgyzstan" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
-      <a href="https://it.wikipedia.org/wiki/Tian_Shan" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      <div id="links-M1">
+        <a href="https://goo.gl/maps/16QMMZggQdha9PSy9?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+        <a href="https://yournameinlandsat.net/gallery/m/m-2-TianShanMountains-Kyrgyzstan" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
+        <a href="https://it.wikipedia.org/wiki/Tian_Shan" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+      </div>
     </section>
 
 
@@ -419,23 +531,128 @@
       <div class="letter">O:</div>
       <div class="place">Lago Crater, USA</div>
 
-      <a href="https://goo.gl/maps/u3drpR2PrFEAE3jeA?g_st=ac" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>
+      <a href="https://goo.gl/maps/u3drpR2PrFEAE3jeA?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
       <a href="https://science.nasa.gov/earth/earth-observatory/a-clear-view-of-crater-lake-151161/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
       <a href="https://it.wikipedia.org/wiki/Lago_Crater" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
     </section>
 
+
+    <section class="entry" id="entry-heart">
+      <div class="letter letter-heart">❤️</div>
+      <div class="fantasy-text">(con un po' di fantasia)</div>
+      <a href="https://www.google.com/maps/place/Calimera+LE/data=!4m2!3m1!1s0x13443b022e447ce5:0x1a958b04d38f72e!18m1!1e1?utm_source=mstt_1&amp;entry=gps&amp;coh=192189&amp;g_ep=CAESBzI2LjMyLjYYACCenQoqnwEsOTQyNjc3MjcsOTQyOTIxOTUsOTQy03M0LDk0MjA8NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA8NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA8NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA8NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA8NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA8NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA8NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA4NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy33M0LDk0MjA8NTA2LDk0MjE8NjUzLDk0MjI5ODM9LDk0Mjc5OjE5LDEwMDgxNTYzNSwxMDA8MjAy" target="_blank" rel="noopener noreferrer" class="home-link">🏠</a>
+    </section>
+
   </main>
 
-  <!-- MODALE POPUP PER LE SCELTE -->
+  <!-- MODALE PRINCIPALE -->
   <div id="imageModal" class="modal-overlay" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="modal-btn" onclick="showFullScreen()">Visualizza immagine intera</div>
-      <div class="modal-btn" onclick="goToAndHighlight()">Scopri di più 🤓</div>
+      <div class="modal-btn" onclick="showFullScreen()">Immagine intera</div>
+      <div class="modal-btn" id="modalSecondBtn" onclick="goToAndHighlight(event)">Scopri di più 🤓</div>
+      <div class="modal-btn" id="modalThirdBtn" onclick="handleThirdBtnClick(event)" style="display: none;">Cambia immagine 🔄</div>
+      <div class="modal-btn" id="modalFourthBtn" onclick="handleFourthBtnClick(event)" style="display: none;">Cambia stagione 🔄</div>
       <button class="modal-close" onclick="closeModal()">Chiudi</button>
     </div>
   </div>
 
-  <!-- OVERLAY IMMAGINE A TUTTO SCHERMO -->
+  <!-- MODALE PER CAMBIO IMMAGINE S -->
+  <div id="switchModalS" class="modal-overlay" onclick="closeSwitchModal('switchModalS')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per S:</div>
+      <div class="switch-grid">
+        <img src="IMMAGINI/S.png" alt="S originale" onclick="selectSVersion('default')">
+        <img src="IMMAGINI switch/S switch.png" alt="S switch" onclick="selectSVersion('switch1')">
+        <img src="IMMAGINI switch/S switch 2.jpeg" alt="S switch 2" onclick="selectSVersion('switch2')">
+        <img src="IMMAGINI switch/S switch 3.jpg" alt="S switch 3" onclick="selectSVersion('switch3')">
+      </div>
+      <button class="modal-close" onclick="closeSwitchModal('switchModalS')">Annulla</button>
+    </div>
+  </div>
+
+  <!-- MODALE PER CAMBIO IMMAGINE F -->
+  <div id="switchModalF" class="modal-overlay" onclick="closeSwitchModal('switchModalF')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per F:</div>
+      <div class="switch-grid">
+        <img src="IMMAGINI/F.png" alt="F originale" onclick="selectFVersion('default')">
+        <img src="IMMAGINI switch/F switch.jpg" alt="F switch" onclick="selectFVersion('switch1')">
+      </div>
+      <button class="modal-close" onclick="closeSwitchModal('switchModalF')">Annulla</button>
+    </div>
+  </div>
+
+  <!-- MODALE PER CAMBIO IMMAGINE I1 -->
+  <div id="switchModalI" class="modal-overlay" onclick="closeSwitchModal('switchModalI')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per la prima I:</div>
+      <div class="switch-grid">
+        <img src="IMMAGINI/I.png" alt="I originale" onclick="selectIVersion('default')">
+        <img src="IMMAGINI/I-2.png" alt="I-2" onclick="selectIVersion('i2')">
+        <img src="IMMAGINI switch/I switch.jpg" alt="I switch" onclick="selectIVersion('switch1')">
+        <img src="IMMAGINI switch/I switch 2.jpg" alt="I switch 2" onclick="selectIVersion('switch2')">
+      </div>
+      <button class="modal-close" onclick="closeSwitchModal('switchModalI')">Annulla</button>
+    </div>
+  </div>
+
+  <!-- MODALE PER CAMBIO IMMAGINE I2 -->
+  <div id="switchModalI2" class="modal-overlay" onclick="closeSwitchModal('switchModalI2')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per la seconda I:</div>
+      <div class="switch-grid">
+        <img src="IMMAGINI/I-2.png" alt="I-2 originale" onclick="selectI2Version('default')">
+        <img src="IMMAGINI/I.png" alt="I" onclick="selectI2Version('i1')">
+        <img src="IMMAGINI switch/I switch.jpg" alt="I switch" onclick="selectI2Version('switch1')">
+        <img src="IMMAGINI switch/I switch 2.jpg" alt="I switch 2" onclick="selectI2Version('switch2')">
+      </div>
+      <button class="modal-close" onclick="closeSwitchModal('switchModalI2')">Annulla</button>
+    </div>
+  </div>
+
+ <!-- MODALE PER CAMBIO IMMAGINE A1 -->
+<div id="switchModalA1" class="modal-overlay" onclick="closeSwitchModal('switchModalA1')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per la prima A:</div>
+    <div class="switch-grid">
+      <img src="IMMAGINI/A.png" alt="A originale" onclick="selectAVersion('default')">
+      <img src="IMMAGINI switch/A switch.jpg" alt="A switch" onclick="selectAVersion('switch1')">
+      <img src="IMMAGINI switch/A switch 2.png" alt="A switch 2" onclick="selectAVersion('switch2')">
+      <img src="IMMAGINI switch/A switch 3.jpg" alt="A switch 3" onclick="selectAVersion('switch3')">
+      <img src="IMMAGINI/A-2.png" alt="A-2" onclick="selectAVersion('a2')">
+    </div>
+    <button class="modal-close" onclick="closeSwitchModal('switchModalA1')">Annulla</button>
+  </div>
+</div>
+
+  <!-- MODALE PER CAMBIO IMMAGINE A2 -->
+  <div id="switchModalA2" class="modal-overlay" onclick="closeSwitchModal('switchModalA2')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per la seconda A:</div>
+      <div class="switch-grid">
+        <img src="IMMAGINI/A-2.png" alt="A-2 originale" onclick="selectA2Version('default')">
+        <img src="IMMAGINI switch/A switch.jpg" alt="A switch" onclick="selectA2Version('switch1')">
+        <img src="IMMAGINI switch/A switch 2.png" alt="A switch 2" onclick="selectA2Version('switch2')">
+        <img src="IMMAGINI switch/A switch 3.jpg" alt="A switch 3" onclick="selectA2Version('switch3')">
+        <img src="IMMAGINI/A.png" alt="A originale" onclick="selectA2Version('a1')">
+      </div>
+      <button class="modal-close" onclick="closeSwitchModal('switchModalA2')">Annulla</button>
+    </div>
+  </div>
+
+  <!-- MODALE PER CAMBIO IMMAGINE M -->
+  <div id="switchModalM" class="modal-overlay" onclick="closeSwitchModal('switchModalM')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per M:</div>
+      <div class="switch-grid">
+        <img src="IMMAGINI/M.png" alt="M originale" onclick="selectMVersion('default')">
+        <img src="IMMAGINI switch/M switch.jpg" alt="M switch" onclick="selectMVersion('switch1')">
+      </div>
+      <button class="modal-close" onclick="closeSwitchModal('switchModalM')">Annulla</button>
+    </div>
+  </div>
+
+  <!-- VISUALIZZATORE IMMAGINE A TUTTO SCHERMO -->
   <div id="fullscreenView" class="fullscreen-overlay" onclick="closeFullScreen()">
     <span class="fullscreen-close">&times;</span>
     <img id="fullscreenImg" src="" alt="Immagine a tutto schermo">
@@ -444,15 +661,694 @@
   <script>
     let activeFullImageSrc = '';
     let activeTargetId = '';
+    let activeLetter = '';
 
-    function openModal(fullImageSrc, targetSectionId) {
+    // VARIANTI PER S
+    const sVariants = {
+      default: {
+        gridImg: 'IMMAGINI/S.png',
+        fullImg: 'IMMAGINI intere/S intera.jpg',
+        placeName: 'Fiume Mackenzie, Canada',
+        linksHtml: `
+          <a href="https://maps.app.goo.gl/65F2QCZhBikN4a3r9?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://science.nasa.gov/earth/earth-observatory/where-trucks-drive-on-the-river-89870/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+          <a href="https://it.wikipedia.org/wiki/Mackenzie" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch1: {
+        gridImg: 'IMMAGINI switch/S switch.png',
+        fullImg: 'IMMAGINI intere/S switch intera.png',
+        placeName: 'Fiume Logone, Ciad/Camerun',
+        linksHtml: `
+          <a href="https://goo.gl/maps/XR1876CuWC58RLqZ6?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://it.wikipedia.org/wiki/Logone" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch2: {
+        gridImg: 'IMMAGINI switch/S switch 2.jpeg',
+        fullImg: 'IMMAGINI intere/S switch 2 intera.jpeg',
+        placeName: 'Río Chapare, Bolivia',
+        linksHtml: `
+          <a href="https://goo.gl/maps/EJhPjBV7CnSgSS4D8?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://yournameinlandsat.net/gallery/s/s-2-RioChapare-Bolivia" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
+          <a href="https://it.wikipedia.org/wiki/Chapare_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+switch3: {
+    gridImg: 'IMMAGINI switch/S switch 3.jpg',
+    fullImg: 'IMMAGINI intere/S switch 3 intera.jpg',
+    placeName: 'Fiume Araguaia, Brasile',
+    linksHtml: `
+      <a href="https://google.com/maps/place/13%C2%B001'27.8%22S+50%C2%B035'00.9%22W/@-13.0301087,-50.6094161,20329m/data=!3m1!1e3!4m4!3m3!8m2!3d-13.024396!4d-50.583595?entry=tts&g_ep=EgoyMDI2MDcwOC4wIPu8ASoASAFQAw%3D%3D&skid=a53e6911-3b8b-4140-ad1d-299ffa3e4922" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+      <a href="https://worldview.earthdata.nasa.gov/?v=-50.78062363385473,-13.117205947067346,-50.399679487746255,-12.942854557279416&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,OCI_PACE_True_Color(hidden),VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor(hidden)&lg=true&s=-60.633,-62.95%2B109.8333,52.5%2B109.636,52.4576%2B-21.643,64.6473%2B16.3333,-18.8333%2B93.5424,36.7398&t=2026-07-07-T19%3A52%3A51Z" target="_blank" rel="noopener noreferrer">🌎 NASA Worldview</a>
+      <a href="https://it.wikipedia.org/wiki/Araguaia" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+    `
+  }
+    };
+
+    // VARIANTI PER F
+    const fVariants = {
+      default: {
+        gridImg: 'IMMAGINI/F.png',
+        fullImg: 'IMMAGINI intere/F intera.jpg',
+        placeName: 'Parco nazionale Yalgorup, Australia',
+        dateText: '27/12/2015',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/32%C2%B045'00.0%22S+115%C2%B042'00.0%22E/@-32.75,115.7,12z" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://en.wikipedia.org/wiki/Yalgorup_National_Park" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch1: {
+        gridImg: 'IMMAGINI switch/F switch.jpg',
+        fullImg: 'IMMAGINI intere/F switch intera.jpg',
+        placeName: 'Mato Grosso, Brasile',
+        dateText: '',
+        linksHtml: `
+          <a href="https://worldview.earthdata.nasa.gov/?v=-55.852629949743495,-14.081706326326374,-54.77906697632334,-13.59035556440296&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor&lg=true&t=2024-07-06-T15%3A01%3A15Z" target="_blank" rel="noopener noreferrer">🌎 NASA Worldview</a>
+        `
+      }
+    };
+
+    // VARIANTI PER I1
+    const iVariants = {
+      default: {
+        gridImg: 'IMMAGINI/I.png',
+        fullImg: 'IMMAGINI intere/I intera.jpg',
+        placeName: 'Holuhraun, Islanda',
+        linksHtml: `
+          <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://science.nasa.gov/earth/earth-observatory/roiling-flows-on-holuhraun-lava-field-84316/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+          <a href="https://en.wikipedia.org/wiki/Holuhraun" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      i2: {
+        gridImg: 'IMMAGINI/I-2.png',
+        fullImg: 'IMMAGINI intere/I-2 intera.jpg',
+        placeName: 'Borgarbyggð, Islanda',
+        linksHtml: `
+          <a href="https://goo.gl/maps/hiCQjUmXKaCTMJYh7?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://it.wikipedia.org/wiki/Borgarbygg%C3%B0" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch1: {
+    gridImg: 'IMMAGINI switch/I switch.jpg',
+    fullImg: 'IMMAGINI intere/I switch intera.jpg',
+    placeName: 'Isola Smith, Antartide',
+    dateText: '26/08/2014',
+    linksHtml: `
+      <a href="https://www.google.com/maps/place/Smith+Island/@-62.999998,-62.5206424,2435m/data=!3m2!1e3!4b1!4m6!3m5!1s0xbc7a19c33df1a673:0x4f00cd9eab4f8e73!8m2!3d-63!4d-62.4999999!16zL20vMDY0YmJk?entry=ttu&g_ep=EgoyMDI6MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+      <a href="https://it.wikipedia.org/wiki/Isola_Smith_(Shetland_Meridionali)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+    `
+  },
+      switch2: {
+        gridImg: 'IMMAGINI switch/I switch 2.jpg',
+        fullImg: 'IMMAGINI intere/I switch 2 intera.jpg',
+        placeName: 'Lago Conesus, USA',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/42%C2%B047'11.0%22N+77%C2%B042'58.1%22W/@42.788273,-77.7566936,31490m/data=!3m1!1e3!4m4!3m3!8m2!3d42.7863889!4d-77.7161389?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://worldview.earthdata.nasa.gov/?v=-78.74180896738312,42.29220013120152,-76.8213478720375,43.171161166375974&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,OCI_PACE_True_Color(hidden),VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor(hidden)&lg=true&s=-60.633,-62.95%2B109.8333,52.5%2B109.636,52.4576%2B-21.643,64.6473&t=2024-04-26-T16%3A58%3A32Z" target="_blank" rel="noopener noreferrer">🌎 NASA Worldview</a>
+          <a href="https://it.wikipedia.org/wiki/Lago_Conesus" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      }
+    };
+
+    // VARIANTI PER SWITCH IMMAGINE I2
+    const i2SwitchVariants = {
+      default: {
+        gridImg: 'IMMAGINI/I-2.png',
+        fullImg: 'IMMAGINI intere/I-2 intera.jpg',
+        placeName: 'Borgarbyggð, Islanda',
+        linksHtml: `
+          <a href="https://goo.gl/maps/hiCQjUmXKaCTMJYh7?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://it.wikipedia.org/wiki/Borgarbygg%C3%B0" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      i1: {
+        gridImg: 'IMMAGINI/I.png',
+        fullImg: 'IMMAGINI intere/I intera.jpg',
+        placeName: 'Holuhraun, Islanda',
+        linksHtml: `
+          <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://science.nasa.gov/earth/earth-observatory/roiling-flows-on-holuhraun-lava-field-84316/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+          <a href="https://en.wikipedia.org/wiki/Holuhraun" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+     switch1: {
+    gridImg: 'IMMAGINI switch/I switch.jpg',
+    fullImg: 'IMMAGINI intere/I switch intera.jpg',
+    placeName: 'Isola Smith, Antartide',
+    dateText: '26/08/2014',
+    linksHtml: `
+      <a href="https://www.google.com/maps/place/Smith+Island/@-62.999998,-62.5206424,2435m/data=!3m2!1e3!4b1!4m6!3m5!1s0xbc7a19c33df1a673:0x4f00cd9eab4f8e73!8m2!3d-63!4d-62.4999999!16zL20vMDY0YmJk?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+      <a href="https://it.wikipedia.org/wiki/Isola_Smith_(Shetland_Meridionali)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+    `
+  },
+      switch2: {
+        gridImg: 'IMMAGINI switch/I switch 2.jpg',
+        fullImg: 'IMMAGINI intere/I switch 2 intera.jpg',
+        placeName: 'Lago Conesus, USA',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/42%C2%B047'11.0%22N+77%C2%B042'58.1%22W/@42.788273,-77.7566936,31490m/data=!3m1!1e3!4m4!3m3!8m2!3d42.7863889!4d-77.7161389?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://worldview.earthdata.nasa.gov/?v=-78.74180896738312,42.29220013120152,-76.8213478720375,43.171161166375974&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,OCI_PACE_True_Color(hidden),VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor(hidden)&lg=true&s=-60.633,-62.95%2B109.8333,52.5%2B109.636,52.4576%2B-21.643,64.6473&t=2024-04-26-T16%3A58%3A32Z" target="_blank" rel="noopener noreferrer">🌎 NASA Worldview</a>
+          <a href="https://it.wikipedia.org/wiki/Lago_Conesus" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      }
+    };
+
+    // STAGIONI PER I2 (Borgarbyggð)
+    const i2Variants = {
+      default: {
+        gridImg: 'IMMAGINI/I-2.png',
+        fullImg: 'IMMAGINI intere/I-2 intera.jpg'
+      },
+      summer: {
+        gridImg: 'IMMAGINI/I-2 estate.png',
+        fullImg: 'IMMAGINI intere/I-2 estate intera.g' // <-- Modifica qui l'estensione (.jpg o .png) in base al tuo file reale
+      }
+    };
+
+    // VARIANTI PER A1
+    const aVariants = {
+      default: {
+        gridImg: 'IMMAGINI/A.png',
+        fullImg: 'IMMAGINI intere/A intera.png',
+        placeName: 'Fiume Yukon, Alaska (USA)',
+        linksHtml: `
+          <a href="https://goo.gl/maps/E1uRzrP4ne8vD5EZ7?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://science.nasa.gov/earth/earth-observatory/yukon-delta-alaska-72762/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+          <a href="https://it.wikipedia.org/wiki/Yukon_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch1: {
+        gridImg: 'IMMAGINI switch/A switch.jpg',
+        fullImg: 'IMMAGINI intere/A switch intera.jpg',
+        placeName: 'Hickman, USA',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/36%C2%B035'20.8%22N+89%C2%B020'26.9%22W/@36.5689533,-89.4212718,59844m/data=!3m1!1e3!4m4!3m3!8m2!3d36.5891111!4d-89.3408056?entry=tts&g_ep=EgoyMDI2MDcyNi4wIPu8ASoASAFQAw%3D%3D&skid=8a292e07-ab56-433d-b99c-5f7975f2b74d" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://worldview.earthdata.nasa.gov/?v=-90.18985433332641,36.14735228492499,-88.47289369397139,36.93317476504646&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor&lg=true&s=-93.0518,35.1662%2B-116.6554,39.3565%2B-119.056,40.9107%2B-119.2064,40.7852%2B-81.2747,53.0084%2B146.8476,-18.3487%2B-89.3408,36.5891&t=2023-08-31-T18%3A03%3A26Z" target="_blank" rel="noopener noreferrer">🌎 NASA Worldview</a>
+          <a href="https://it.wikipedia.org/wiki/Hickman_(Kentucky)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch2: {
+        gridImg: 'IMMAGINI switch/A switch 2.png',
+        fullImg: 'IMMAGINI intere/A switch 2 intera.png',
+        placeName: 'Farm Island, USA',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/45%C2%B043'45.4%22N+69%C2%B046'04.7%22W/@45.7190466,-69.7878489,14600m/data=!3m1!1e3!4m4!3m3!8m2!3d45.7292778!4d-69.7679722?entry=tts&g_ep=EgoyMDI2MDcyNi4wIPu8ASoASAFQAw%3D%3D&skid=6f4678df-e45f-485f-a970-099191af21fc" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://worldview.earthdata.nasa.gov/?v=-70.25141826661633,45.485533956303485,-69.29118771894349,45.92501447389073&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,OCI_PACE_True_Color(hidden),VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor(hidden)&lg=true&t=2024-02-18-T16%3A58%3A32Z" target="_blank" rel="noopener noreferrer">🌎 NASA Worldview</a>
+          <a href="https://it.wikipedia.org/wiki/Lago_Moosehead" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch3: {
+        gridImg: 'IMMAGINI switch/A switch 3.jpg',
+        fullImg: 'IMMAGINI intere/A switch 3 intera.jpg',
+        placeName: 'Lago Guakhmaz, Azerbaijan',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/40%C2%B039'50.8%22N+47%C2%B006'36.2%22E/@40.6611124,47.0898292,11569m/data=!3m1!1e3!4m4!3m3!8m2!3d40.664102!4d47.110067?entry=tts&g_ep=EgoyMDI0MDcxMC4wKgBIAVAD" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://science.nasa.gov/earth/earth-observatory/a-is-for-azerbaijan-153367/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+          <a href="https://www.finalrentalsaz.com/blog/single/how-to-explore-the-guba-khachmaz-region-in-azerbaijan" target="_blank" rel="noopener noreferrer">📖 Info</a>
+        `
+      },
+      a2: {
+        gridImg: 'IMMAGINI/A-2.png',
+        fullImg: 'IMMAGINI intere/A-2 intera.png',
+        placeName: 'Lago Mjøsa, Norvegia',
+        linksHtml: `
+          <a href="https://goo.gl/maps/Tif1A7bmDqShNScg8?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://yournameinlandsat.net/gallery/a/a-4-Lake-Mj%C3%B8sa-Norway" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
+          <a href="https://it.wikipedia.org/wiki/Mj%C3%B8sa" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      }
+    };
+
+    // VARIANTI PER A2
+    const a2Variants = {
+      default: {
+        gridImg: 'IMMAGINI/A-2.png',
+        fullImg: 'IMMAGINI intere/A-2 intera.png',
+        placeName: 'Lago Mjøsa, Norvegia',
+        linksHtml: `
+          <a href="https://goo.gl/maps/Tif1A7bmDqShNScg8?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://yournameinlandsat.net/gallery/a/a-4-Lake-Mj%C3%B8sa-Norway" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
+          <a href="https://it.wikipedia.org/wiki/Mj%C3%B8sa" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch1: {
+        gridImg: 'IMMAGINI switch/A switch.jpg',
+        fullImg: 'IMMAGINI intere/A switch intera.jpg',
+        placeName: 'Hickman, USA',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/36%C2%B035'20.8%22N+89%C2%B020'26.9%22W/@36.5689533,-89.4212718,59844m/data=!3m1!1e3!4m4!3m3!8m2!3d36.5891111!4d-89.3408056?entry=tts&g_ep=EgoyMDI2MDcyNi4wIPu8ASoASAFQAw%3D%3D&skid=8a292e07-ab56-433d-b99c-5f7975f2b74d" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://worldview.earthdata.nasa.gov/?v=-90.18985433332641,36.14735228492499,-88.47289369397139,36.93317476504646&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor&lg=true&s=-93.0518,35.1662%2B-116.6554,39.3565%2B-119.056,40.9107%2B-119.2064,40.7852%2B-81.2747,53.0084%2B146.8476,-18.3487%2B-89.3408,36.5891&t=2023-08-31-T18%3A03%3A26Z" target="_blank" rel="noopener noreferrer">🌎 NASA Worldview</a>
+          <a href="https://it.wikipedia.org/wiki/Hickman_(Kentucky)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch2: {
+        gridImg: 'IMMAGINI switch/A switch 2.png',
+        fullImg: 'IMMAGINI intere/A switch 2 intera.png',
+        placeName: 'Farm Island, USA',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/45%C2%B043'45.4%22N+69%C2%B046'04.7%22W/@45.7190466,-69.7878489,14600m/data=!3m1!1e3!4m4!3m3!8m2!3d45.7292778!4d-69.7679722?entry=tts&g_ep=EgoyMDI2MDcyNi4wIPu8ASoASAFQAw%3D%3D&skid=6f4678df-e45f-485f-a970-099191af21fc" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://worldview.earthdata.nasa.gov/?v=-70.25141826661633,45.485533956303485,-69.29118771894349,45.92501447389073&l=Reference_Labels_15m(hidden),Reference_Features_15m(hidden),Coastlines_15m,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,OCI_PACE_True_Color(hidden),VIIRS_NOAA21_CorrectedReflectance_TrueColor(hidden),VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor(hidden)&lg=true&t=2024-02-18-T16%3A58%3A32Z" target="_blank" rel="noopener noreferrer">🌎 NASA Worldview</a>
+          <a href="https://it.wikipedia.org/wiki/Lago_Moosehead" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch3: {
+        gridImg: 'IMMAGINI switch/A switch 3.jpg',
+        fullImg: 'IMMAGINI intere/A switch 3 intera.jpg',
+        placeName: 'Lago Guakhmaz, Azerbaijan',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/40%C2%B039'50.8%22N+47%C2%B006'36.2%22E/@40.6611124,47.0898292,11569m/data=!3m1!1e3!4m4!3m3!8m2!3d40.664102!4d47.110067?entry=tts&g_ep=EgoyMDI0MDcxMC4wKgBIAVAD" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://science.nasa.gov/earth/earth-observatory/a-is-for-azerbaijan-153367/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+          <a href="https://www.finalrentalsaz.com/blog/single/how-to-explore-the-guba-khachmaz-region-in-azerbaijan" target="_blank" rel="noopener noreferrer">📖 Info</a>
+        `
+      },
+      a1: {
+    gridImg: 'IMMAGINI/A.png',
+    fullImg: 'IMMAGINI intere/A intera.png',
+    placeName: 'Fiume Yukon, Alaska (USA)',
+    linksHtml: `
+      <a href="https://goo.gl/maps/E1uRzrP4ne8vD5EZ7?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+      <a href="https://science.nasa.gov/earth/earth-observatory/yukon-delta-alaska-72762/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+      <a href="https://it.wikipedia.org/wiki/Yukon_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+    `
+  },
+    };
+
+    // VARIANTI PER M1
+    const mVariants = {
+      default: {
+        gridImg: 'IMMAGINI/M.png',
+        fullImg: 'IMMAGINI intere/M intera.jpg',
+        placeName: 'Tian Shan, Kyrgyzstan',
+        linksHtml: `
+          <a href="https://goo.gl/maps/16QMMZggQdha9PSy9?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://yournameinlandsat.net/gallery/m/m-2-TianShanMountains-Kyrgyzstan" target="_blank" rel="noopener noreferrer">🛰️ Your Name in Landsat</a>
+          <a href="https://it.wikipedia.org/wiki/Tian_Shan" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      },
+      switch1: {
+        gridImg: 'IMMAGINI switch/M switch.jpg',
+        fullImg: 'IMMAGINI intere/M switch intera.jpg',
+        placeName: 'Fiume Shenandoah, USA',
+        linksHtml: `
+          <a href="https://www.google.com/maps/place/Shenandoah+River/@38.7773712,-78.4192219,8363m/data=!3m1!1e3!4m6!3m5!1s0x89b6047d550cb7f7:0x83e4ccba6e682c02!8m2!3d39.1019371!4d-77.9660084!16zL20vMDMzejYz?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+          <a href="https://science.nasa.gov/earth/earth-observatory/the-sinuous-shenandoah-84837/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
+          <a href="https://it.wikipedia.org/wiki/Shenandoah_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+        `
+      }
+    };
+
+    // VARIANTI PER O1 (Manicouagan)
+    const o1Variants = {
+      default: {
+        gridImg: 'IMMAGINI/O.png',
+        fullImg: 'IMMAGINI intere/O intera.jpg',
+        dateText: '31/08/2018'
+      },
+      winter: {
+        gridImg: 'IMMAGINI/O inverno.jpg',
+        fullImg: 'IMMAGINI intere/O inverno intera.jpg',
+        dateText: '02/01/2020'
+      }
+    };
+
+    // VARIANTI PER O2 (Crater Lake)
+    const o2Variants = {
+      default: {
+        gridImg: 'IMMAGINI/O-2.png',
+        fullImg: 'IMMAGINI intere/O-2 intera.jpg'
+      },
+      winter: {
+        gridImg: 'IMMAGINI/O-2 inverno.png',
+        fullImg: 'IMMAGINI intere/O-2 inverno intera.png'
+      }
+    };
+
+    let currentSVersion = 'default';
+    let currentFVersion = 'default';
+    let currentIVersion = 'default';
+    let currentI2SwitchVersion = 'default';
+    let currentAVersion = 'default';
+    let currentA2Version = 'default';
+    let currentMVersion = 'default';
+    let currentO1Version = 'default';
+    let currentO2Version = 'default';
+    let currentI2Version = 'default';
+
+    function openModalForS() {
+      activeLetter = 'S';
+      const data = sVariants[currentSVersion];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-S1';
+      
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+      document.getElementById('modalFourthBtn').style.display = 'none';
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function openModalForF() {
+      activeLetter = 'F';
+      const data = fVariants[currentFVersion];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-F1';
+      
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+      document.getElementById('modalFourthBtn').style.display = 'none';
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function openModalForI1() {
+      activeLetter = 'I1';
+      const data = iVariants[currentIVersion];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-I1';
+      
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+      document.getElementById('modalFourthBtn').style.display = 'none';
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function openModalForI1() {
+      activeLetter = 'I1';
+      const data = iVariants[currentIVersion];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-I1';
+      
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+
+      // Mostra il tasto stagione SOLO se l'immagine attiva è I-2 (sia standard che estate)
+      if (currentIVersion === 'i2' || activeFullImageSrc.includes('I-2')) {
+        document.getElementById('modalFourthBtn').innerText = 'Cambia stagione 🔄';
+        document.getElementById('modalFourthBtn').style.display = 'block';
+      } else {
+        document.getElementById('modalFourthBtn').style.display = 'none';
+      }
+
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function openModalForA1() {
+    
+  activeLetter = 'A1';
+  const data = aVariants[currentAVersion];
+  activeFullImageSrc = data.fullImg;
+  activeTargetId = 'entry-A1';
+
+  document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🧐';
+  document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+  document.getElementById('modalThirdBtn').style.display = 'block';
+
+  // Nasconde il quarto tasto (stagione) se presente
+  if (document.getElementById('modalFourthBtn')) {
+    document.getElementById('modalFourthBtn').style.display = 'none';
+  }
+
+  document.getElementById('imageModal').style.display = 'flex';
+}
+    function openModalForA2() {
+      activeLetter = 'A2';
+      const data = a2Variants[currentA2Version];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-A2';
+      
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+      document.getElementById('modalFourthBtn').style.display = 'none';
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function openModalForM() {
+      activeLetter = 'M';
+      const data = mVariants[currentMVersion];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-M1';
+      
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+      document.getElementById('modalFourthBtn').style.display = 'none';
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function openModalForO1() {
+      activeLetter = 'O1';
+      const data = o1Variants[currentO1Version];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-O1';
+
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia stagione 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+      document.getElementById('modalFourthBtn').style.display = 'none';
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function openModalForO2() {
+      activeLetter = 'O2';
+      const data = o2Variants[currentO2Version];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-O2';
+
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia stagione 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+      document.getElementById('modalFourthBtn').style.display = 'none';
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+
+    function openModalForI2() {
+      activeLetter = 'I2';
+      const data = i2SwitchVariants[currentI2SwitchVersion];
+      activeFullImageSrc = data.fullImg;
+      activeTargetId = 'entry-I2';
+
+      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').style.display = 'block';
+
+      // Mostra il tasto stagione SOLO se siamo sulla variante I-2 (default) o se l'immagine è I-2
+      if (currentI2SwitchVersion === 'default' || activeFullImageSrc.includes('I-2')) {
+        document.getElementById('modalFourthBtn').innerText = 'Cambia stagione 🔄';
+        document.getElementById('modalFourthBtn').style.display = 'block';
+      } else {
+        document.getElementById('modalFourthBtn').style.display = 'none';
+      }
+
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+    function openModal(fullImageSrc, targetSectionId, secondBtnText = 'Scopri di più 🤓') {
+      activeLetter = '';
       activeFullImageSrc = fullImageSrc;
       activeTargetId = targetSectionId;
+      
+      document.getElementById('modalSecondBtn').innerText = secondBtnText;
+      document.getElementById('modalThirdBtn').style.display = 'none';
+      document.getElementById('modalFourthBtn').style.display = 'none';
       document.getElementById('imageModal').style.display = 'flex';
     }
 
     function closeModal() {
       document.getElementById('imageModal').style.display = 'none';
+    }
+    
+
+    function handleThirdBtnClick(event) {
+  if (event) event.stopPropagation();
+
+  if (activeLetter === 'S') {
+    closeModal();
+    document.getElementById('switchModalS').style.display = 'flex';
+  } else if (activeLetter === 'F') {
+    closeModal();
+    document.getElementById('switchModalF').style.display = 'flex';
+  } else if (activeLetter === 'I1') {
+    closeModal();
+    document.getElementById('switchModalI').style.display = 'flex';
+  } else if (activeLetter === 'I2') {
+    closeModal();
+    document.getElementById('switchModalI2').style.display = 'flex';
+  } else if (activeLetter === 'A1') {
+    closeModal();
+    document.getElementById('switchModalA1').style.display = 'flex';
+  } else if (activeLetter === 'A2') {
+    closeModal();
+    document.getElementById('switchModalA2').style.display = 'flex';
+  } else if (activeLetter === 'M') {
+    closeModal();
+    document.getElementById('switchModalM').style.display = 'flex';
+  } else if (activeLetter === 'O1') {
+    toggleSeasonO1();
+    closeModal();
+  } else if (activeLetter === 'O2') {
+    toggleSeasonO2();
+    closeModal();
+  }
+}
+
+   function handleFourthBtnClick(event) {
+      if (event) event.stopPropagation();
+
+      if (activeLetter === 'I2' || (activeLetter === 'I1' && currentIVersion === 'i2')) {
+        toggleSeasonI2();
+        closeModal();
+      }
+    }
+
+    function toggleSeasonO1() {
+      currentO1Version = currentO1Version === 'default' ? 'winter' : 'default';
+      const data = o1Variants[currentO1Version];
+
+      document.getElementById('img-O1').src = data.gridImg;
+      activeFullImageSrc = data.fullImg;
+
+      const dateElem = document.getElementById('date-O1');
+      if (dateElem && data.dateText) {
+        dateElem.innerText = data.dateText;
+      }
+    }
+
+    function toggleSeasonO2() {
+      currentO2Version = currentO2Version === 'default' ? 'winter' : 'default';
+      const data = o2Variants[currentO2Version];
+
+      document.getElementById('img-O2').src = data.gridImg;
+      activeFullImageSrc = data.fullImg;
+    }
+
+    function toggleSeasonI2() {
+      currentI2Version = currentI2Version === 'default' ? 'summer' : 'default';
+      const data = i2Variants[currentI2Version];
+
+      // Se hai aperto il modale dalla prima I (I1), aggiorna img-I1, altrimenti img-I2
+      if (activeLetter === 'I1') {
+        document.getElementById('img-I1').src = data.gridImg;
+      } else {
+        document.getElementById('img-I2').src = data.gridImg;
+      }
+
+      activeFullImageSrc = data.fullImg;
+    }
+
+    function closeSwitchModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    function selectSVersion(versionKey) {
+      currentSVersion = versionKey;
+      const data = sVariants[versionKey];
+
+      document.getElementById('img-S1').src = data.gridImg;
+      document.getElementById('place-S1').innerText = data.placeName;
+      document.getElementById('links-S1').innerHTML = data.linksHtml;
+
+      closeSwitchModal('switchModalS');
+    }
+
+    function selectFVersion(versionKey) {
+      currentFVersion = versionKey;
+      const data = fVariants[versionKey];
+
+      document.getElementById('img-F1').src = data.gridImg;
+      document.getElementById('place-F1').innerText = data.placeName;
+      
+      const dateElem = document.getElementById('date-F1');
+      if (data.dateText) {
+        dateElem.innerText = data.dateText;
+        dateElem.style.display = 'block';
+      } else {
+        dateElem.style.display = 'none';
+      }
+
+      document.getElementById('links-F1').innerHTML = data.linksHtml;
+
+      closeSwitchModal('switchModalF');
+    }
+
+   function selectIVersion(versionKey) {
+  currentIVersion = versionKey;
+  const data = iVariants[versionKey];
+
+  document.getElementById('img-I1').src = data.gridImg;
+  document.getElementById('place-I1').innerText = data.placeName;
+  document.getElementById('links-I1').innerHTML = data.linksHtml;
+
+  // Gestione data
+  const dateElem = document.getElementById('date-I1');
+  if (dateElem) {
+    if (data.dateText) {
+      dateElem.innerText = data.dateText;
+      dateElem.style.display = 'block';
+    } else {
+      dateElem.style.display = 'none';
+    }
+  }
+
+  closeSwitchModal('switchModalI');
+}
+
+    function selectI2Version(versionKey) {
+  currentI2SwitchVersion = versionKey;
+  const data = i2SwitchVariants[versionKey];
+
+  document.getElementById('img-I2').src = data.gridImg;
+  document.getElementById('place-I2').innerText = data.placeName;
+  document.getElementById('links-I2').innerHTML = data.linksHtml;
+
+  // Gestione data per la seconda casella I
+  const dateElem = document.getElementById('date-I2');
+  if (dateElem) {
+    if (data.dateText) {
+      dateElem.innerText = data.dateText;
+      dateElem.style.display = 'block';
+    } else {
+      dateElem.style.display = 'none';
+    }
+  }
+
+  closeSwitchModal('switchModalI2');
+}
+
+    function selectAVersion(versionKey) {
+      currentAVersion = versionKey;
+      const data = aVariants[versionKey];
+
+      document.getElementById('img-A1').src = data.gridImg;
+      document.getElementById('place-A1').innerText = data.placeName;
+      document.getElementById('links-A1').innerHTML = data.linksHtml;
+
+      closeSwitchModal('switchModalA1');
+    }
+
+    function selectA2Version(versionKey) {
+      currentA2Version = versionKey;
+      const data = a2Variants[versionKey];
+
+      document.getElementById('img-A2').src = data.gridImg;
+      document.getElementById('place-A2').innerText = data.placeName;
+      document.getElementById('links-A2').innerHTML = data.linksHtml;
+
+      closeSwitchModal('switchModalA2');
+    }
+
+    function selectMVersion(versionKey) {
+      currentMVersion = versionKey;
+      const data = mVariants[versionKey];
+
+      document.getElementById('img-M1').src = data.gridImg;
+      document.getElementById('place-M1').innerText = data.placeName;
+      document.getElementById('links-M1').innerHTML = data.linksHtml;
+
+      closeSwitchModal('switchModalM');
     }
 
     function showFullScreen() {
@@ -462,7 +1358,6 @@
       const fsOverlay = document.getElementById('fullscreenView');
       const fsImg = document.getElementById('fullscreenImg');
       
-      // Converte gli spazi per renderli leggibili dal browser
       fsImg.src = encodeURI(activeFullImageSrc);
       fsOverlay.style.display = 'flex';
     }
@@ -471,25 +1366,40 @@
       document.getElementById('fullscreenView').style.display = 'none';
     }
 
-    function goToAndHighlight() {
+    function clearHighlights() {
+      document.querySelectorAll('.entry.highlight').forEach(el => {
+        el.classList.remove('highlight');
+      });
+    }
+
+    function goToAndHighlight(event) {
+      if (event) event.stopPropagation();
       closeModal();
       if (!activeTargetId) return;
+
+      clearHighlights();
 
       const targetElement = document.getElementById(activeTargetId);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         targetElement.classList.add('highlight');
-
-        setTimeout(() => {
-          targetElement.classList.remove('highlight');
-        }, 2500);
       }
     }
 
-    /* Chiusura finestre premendo il tasto ESC */
+    document.addEventListener('click', () => {
+      clearHighlights();
+    });
+
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         closeModal();
+        closeSwitchModal('switchModalS');
+        closeSwitchModal('switchModalF');
+        closeSwitchModal('switchModalI');
+        closeSwitchModal('switchModalI2');
+        closeSwitchModal('switchModalA');
+        closeSwitchModal('switchModalA2');
+        closeSwitchModal('switchModalM');
         closeFullScreen();
       }
     });
