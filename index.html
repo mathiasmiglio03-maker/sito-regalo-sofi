@@ -131,12 +131,12 @@
     }
 
     .gallery-container {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 16px 12px;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
       margin: 18px 0 25px;
-      box-shadow: 0 8px 25px rgba(120, 45, 80, 0.10);
-      backdrop-filter: blur(5px);
+      box-shadow: none;
+      backdrop-filter: none;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -175,6 +175,10 @@
       border-radius: 10px;
       object-fit: cover;
       display: block;
+    }
+
+    #img-F1 {
+      object-position: 60% center;
     }
 
     .clickable-img {
@@ -370,7 +374,7 @@
       </div>
 
       <div class="gallery gallery-centered-2">
-        <img src="IMMAGINI/T.png" alt="Lettera T" class="clickable-img" onclick="openModal('IMMAGINI intere/T intera.jpg', 'entry-T1', 'Scopri di più 🤓')">
+        <img src="IMMAGINI/T.png" alt="Lettera T" class="clickable-img" onclick="openModal('IMMAGINI intere/T intera.png', 'entry-T1', 'Scopri di più 🤓')">
         <img id="img-I2" src="IMMAGINI/I-2.png" alt="Lettera I" class="clickable-img" onclick="openModalForI2()">
       </div>
 
@@ -548,9 +552,9 @@
   <!-- MODALE PRINCIPALE -->
   <div id="imageModal" class="modal-overlay" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="modal-btn" onclick="showFullScreen()">Immagine intera</div>
+      <div class="modal-btn" onclick="showFullScreen()">Apri immagine</div>
       <div class="modal-btn" id="modalSecondBtn" onclick="goToAndHighlight(event)">Scopri di più 🤓</div>
-      <div class="modal-btn" id="modalThirdBtn" onclick="handleThirdBtnClick(event)" style="display: none;">Cambia immagine 🔄</div>
+      <div class="modal-btn" id="modalThirdBtn" onclick="handleThirdBtnClick(event)" style="display: none;">Cambia immagine</div>
       <div class="modal-btn" id="modalFourthBtn" onclick="handleFourthBtnClick(event)" style="display: none;">Cambia stagione 🔄</div>
       <button class="modal-close" onclick="closeModal()">Chiudi</button>
     </div>
@@ -588,9 +592,9 @@
       <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per la prima I:</div>
       <div class="switch-grid">
         <img src="IMMAGINI/I.png" alt="I originale" onclick="selectIVersion('default')">
-        <img src="IMMAGINI/I-2.png" alt="I-2" onclick="selectIVersion('i2')">
         <img src="IMMAGINI switch/I switch.jpg" alt="I switch" onclick="selectIVersion('switch1')">
-        <img src="IMMAGINI switch/I switch 2.jpg" alt="I switch 2" onclick="selectIVersion('switch2')">
+        <img src="IMMAGINI switch/I switch 2.png" alt="I switch 2" onclick="selectIVersion('switch2')">
+        <img src="IMMAGINI/I-2.png" alt="I-2" onclick="selectIVersion('i2')">
       </div>
       <button class="modal-close" onclick="closeSwitchModal('switchModalI')">Annulla</button>
     </div>
@@ -602,9 +606,9 @@
       <div style="font-weight: bold; margin-bottom: 4px;">Scegli l'immagine per la seconda I:</div>
       <div class="switch-grid">
         <img src="IMMAGINI/I-2.png" alt="I-2 originale" onclick="selectI2Version('default')">
-        <img src="IMMAGINI/I.png" alt="I" onclick="selectI2Version('i1')">
         <img src="IMMAGINI switch/I switch.jpg" alt="I switch" onclick="selectI2Version('switch1')">
-        <img src="IMMAGINI switch/I switch 2.jpg" alt="I switch 2" onclick="selectI2Version('switch2')">
+        <img src="IMMAGINI switch/I switch 2.png" alt="I switch 2" onclick="selectI2Version('switch2')">
+        <img src="IMMAGINI/I.png" alt="I" onclick="selectI2Version('i1')">
       </div>
       <button class="modal-close" onclick="closeSwitchModal('switchModalI2')">Annulla</button>
     </div>
@@ -619,6 +623,7 @@
       <img src="IMMAGINI switch/A switch.jpg" alt="A switch" onclick="selectAVersion('switch1')">
       <img src="IMMAGINI switch/A switch 2.png" alt="A switch 2" onclick="selectAVersion('switch2')">
       <img src="IMMAGINI switch/A switch 3.jpg" alt="A switch 3" onclick="selectAVersion('switch3')">
+      <img src="IMMAGINI switch/A switch 4.jpg" alt="A switch 4" onclick="selectAVersion('switch4')"> <!-- Quinta opzione -->
       <img src="IMMAGINI/A-2.png" alt="A-2" onclick="selectAVersion('a2')">
     </div>
     <button class="modal-close" onclick="closeSwitchModal('switchModalA1')">Annulla</button>
@@ -634,6 +639,7 @@
         <img src="IMMAGINI switch/A switch.jpg" alt="A switch" onclick="selectA2Version('switch1')">
         <img src="IMMAGINI switch/A switch 2.png" alt="A switch 2" onclick="selectA2Version('switch2')">
         <img src="IMMAGINI switch/A switch 3.jpg" alt="A switch 3" onclick="selectA2Version('switch3')">
+        <img src="IMMAGINI switch/A switch 4.jpg" alt="A switch 4" onclick="selectAVersion('switch4')"> <!-- Quinta opzione -->
         <img src="IMMAGINI/A.png" alt="A originale" onclick="selectA2Version('a1')">
       </div>
       <button class="modal-close" onclick="closeSwitchModal('switchModalA2')">Annulla</button>
@@ -647,6 +653,7 @@
       <div class="switch-grid">
         <img src="IMMAGINI/M.png" alt="M originale" onclick="selectMVersion('default')">
         <img src="IMMAGINI switch/M switch.jpg" alt="M switch" onclick="selectMVersion('switch1')">
+        <img src="IMMAGINI switch/M switch 2.png" alt="M switch 2" onclick="selectMVersion('switch2')">
       </div>
       <button class="modal-close" onclick="closeSwitchModal('switchModalM')">Annulla</button>
     </div>
@@ -667,7 +674,7 @@
     const sVariants = {
       default: {
         gridImg: 'IMMAGINI/S.png',
-        fullImg: 'IMMAGINI intere/S intera.jpg',
+        fullImg: 'IMMAGINI intere/S intera.png',
         placeName: 'Fiume Mackenzie, Canada',
         linksHtml: `
           <a href="https://maps.app.goo.gl/65F2QCZhBikN4a3r9?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
@@ -733,7 +740,7 @@ switch3: {
     const iVariants = {
       default: {
         gridImg: 'IMMAGINI/I.png',
-        fullImg: 'IMMAGINI intere/I intera.jpg',
+        fullImg: 'IMMAGINI intere/I intera.png',
         placeName: 'Holuhraun, Islanda',
         linksHtml: `
           <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
@@ -761,8 +768,8 @@ switch3: {
     `
   },
       switch2: {
-        gridImg: 'IMMAGINI switch/I switch 2.jpg',
-        fullImg: 'IMMAGINI intere/I switch 2 intera.jpg',
+        gridImg: 'IMMAGINI switch/I switch 2.png',
+        fullImg: 'IMMAGINI intere/I switch 2 intera.png',
         placeName: 'Lago Conesus, USA',
         linksHtml: `
           <a href="https://www.google.com/maps/place/42%C2%B047'11.0%22N+77%C2%B042'58.1%22W/@42.788273,-77.7566936,31490m/data=!3m1!1e3!4m4!3m3!8m2!3d42.7863889!4d-77.7161389?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
@@ -785,7 +792,7 @@ switch3: {
       },
       i1: {
         gridImg: 'IMMAGINI/I.png',
-        fullImg: 'IMMAGINI intere/I intera.jpg',
+        fullImg: 'IMMAGINI intere/I intera.png',
         placeName: 'Holuhraun, Islanda',
         linksHtml: `
           <a href="https://maps.app.goo.gl/v71bFvhgUX9zb5Tj6" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
@@ -804,8 +811,8 @@ switch3: {
     `
   },
       switch2: {
-        gridImg: 'IMMAGINI switch/I switch 2.jpg',
-        fullImg: 'IMMAGINI intere/I switch 2 intera.jpg',
+        gridImg: 'IMMAGINI switch/I switch 2.png',
+        fullImg: 'IMMAGINI intere/I switch 2 intera.png',
         placeName: 'Lago Conesus, USA',
         linksHtml: `
           <a href="https://www.google.com/maps/place/42%C2%B047'11.0%22N+77%C2%B042'58.1%22W/@42.788273,-77.7566936,31490m/data=!3m1!1e3!4m4!3m3!8m2!3d42.7863889!4d-77.7161389?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
@@ -823,7 +830,7 @@ switch3: {
       },
       summer: {
         gridImg: 'IMMAGINI/I-2 estate.png',
-        fullImg: 'IMMAGINI intere/I-2 estate intera.g' // <-- Modifica qui l'estensione (.jpg o .png) in base al tuo file reale
+        fullImg: 'IMMAGINI intere/I-2 estate intera.png' // <-- Modifica qui l'estensione (.jpg o .png) in base al tuo file reale
       }
     };
 
@@ -869,6 +876,16 @@ switch3: {
           <a href="https://www.finalrentalsaz.com/blog/single/how-to-explore-the-guba-khachmaz-region-in-azerbaijan" target="_blank" rel="noopener noreferrer">📖 Info</a>
         `
       },
+      // Aggiungi dentro aVariants:
+switch4: {
+  gridImg: 'IMMAGINI switch/A switch 4.jpg',
+  fullImg: 'IMMAGINI intere/A switch 4 intera.jpg',
+  placeName: 'Fiume Marañón, Perù',
+  linksHtml: `
+    <a href="https://www.google.com/maps/place/4%C2%B036'00.9%22S+74%C2%B027'33.3%22W/@-4.5820081,-74.4557872,13509m/data=!3m1!1e3!4m4!3m3!8m2!3d-4.60025!4d-74.45925?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+    <a href="https://it.wikipedia.org/wiki/Mara%C3%B1%C3%B3n_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+  `
+},
       a2: {
         gridImg: 'IMMAGINI/A-2.png',
         fullImg: 'IMMAGINI intere/A-2 intera.png',
@@ -923,6 +940,16 @@ switch3: {
           <a href="https://www.finalrentalsaz.com/blog/single/how-to-explore-the-guba-khachmaz-region-in-azerbaijan" target="_blank" rel="noopener noreferrer">📖 Info</a>
         `
       },
+      // Aggiungi dentro aVariants:
+switch4: {
+  gridImg: 'IMMAGINI switch/A switch 4.jpg',
+  fullImg: 'IMMAGINI intere/A switch 4 intera.jpg',
+  placeName: 'Fiume Marañón, Perù',
+  linksHtml: `
+    <a href="https://www.google.com/maps/place/4%C2%B036'00.9%22S+74%C2%B027'33.3%22W/@-4.5820081,-74.4557872,13509m/data=!3m1!1e3!4m4!3m3!8m2!3d-4.60025!4d-74.45925?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+    <a href="https://it.wikipedia.org/wiki/Mara%C3%B1%C3%B3n_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+  `
+},
       a1: {
     gridImg: 'IMMAGINI/A.png',
     fullImg: 'IMMAGINI intere/A intera.png',
@@ -939,7 +966,7 @@ switch3: {
     const mVariants = {
       default: {
         gridImg: 'IMMAGINI/M.png',
-        fullImg: 'IMMAGINI intere/M intera.jpg',
+        fullImg: 'IMMAGINI intere/M intera.png',
         placeName: 'Tian Shan, Kyrgyzstan',
         linksHtml: `
           <a href="https://goo.gl/maps/16QMMZggQdha9PSy9?g_st=ac" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
@@ -956,7 +983,17 @@ switch3: {
           <a href="https://science.nasa.gov/earth/earth-observatory/the-sinuous-shenandoah-84837/" target="_blank" rel="noopener noreferrer">🌎 NASA Earth Observatory</a>
           <a href="https://it.wikipedia.org/wiki/Shenandoah_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
         `
-      }
+      },
+      switch2: {
+  gridImg: 'IMMAGINI switch/M switch 2.png',
+  fullImg: 'IMMAGINI intere/M switch 2 intera.png',
+  placeName: 'Fiume Potomac, USA',
+  linksHtml: `
+    <a href="https://www.google.com/maps/place/Potomac/@38.8058517,-78.7492123,351281m/data=!3m2!1e3!4b1!4m6!3m5!1s0x89b63ad5ae827813:0xbd6aa53140b9bed2!8m2!3d38.6537976!4d-77.2301856!16zL20vMGc1Mmc?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">🗺️ Mappa</a>
+    <a href="https://it.wikipedia.org/wiki/Potomac_(fiume)" target="_blank" rel="noopener noreferrer">📖 Wikipedia</a>
+  `
+}
+     
     };
 
     // VARIANTI PER O1 (Manicouagan)
@@ -1003,7 +1040,7 @@ switch3: {
       activeTargetId = 'entry-S1';
       
       document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
-      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine';
       document.getElementById('modalThirdBtn').style.display = 'block';
       document.getElementById('modalFourthBtn').style.display = 'none';
       document.getElementById('imageModal').style.display = 'flex';
@@ -1016,7 +1053,7 @@ switch3: {
       activeTargetId = 'entry-F1';
       
       document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
-      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine';
       document.getElementById('modalThirdBtn').style.display = 'block';
       document.getElementById('modalFourthBtn').style.display = 'none';
       document.getElementById('imageModal').style.display = 'flex';
@@ -1029,32 +1066,39 @@ switch3: {
       activeTargetId = 'entry-I1';
       
       document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
-      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine';
       document.getElementById('modalThirdBtn').style.display = 'block';
       document.getElementById('modalFourthBtn').style.display = 'none';
       document.getElementById('imageModal').style.display = 'flex';
     }
 
-    function openModalForI1() {
-      activeLetter = 'I1';
-      const data = iVariants[currentIVersion];
-      activeFullImageSrc = data.fullImg;
-      activeTargetId = 'entry-I1';
-      
-      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
-      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
-      document.getElementById('modalThirdBtn').style.display = 'block';
+   function openModalForI1() {
+  activeLetter = 'I1';
 
-      // Mostra il tasto stagione SOLO se l'immagine attiva è I-2 (sia standard che estate)
-      if (currentIVersion === 'i2' || activeFullImageSrc.includes('I-2')) {
-        document.getElementById('modalFourthBtn').innerText = 'Cambia stagione 🔄';
-        document.getElementById('modalFourthBtn').style.display = 'block';
-      } else {
-        document.getElementById('modalFourthBtn').style.display = 'none';
-      }
+  // Se è stata selezionata la variante I-2 ed è attiva la stagione estiva
+  if (currentIVersion === 'i2' && currentI2Version === 'summer') {
+    activeFullImageSrc = i2Variants.summer.fullImg;
+  } else {
+    const data = iVariants[currentIVersion];
+    activeFullImageSrc = data.fullImg;
+  }
 
-      document.getElementById('imageModal').style.display = 'flex';
-    }
+  activeTargetId = 'entry-I1';
+  
+  document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+  document.getElementById('modalThirdBtn').innerText = 'Cambia immagine';
+  document.getElementById('modalThirdBtn').style.display = 'block';
+
+  // Mostra il tasto stagione SOLO se l'immagine attiva è I-2 (sia standard che estate)
+  if (currentIVersion === 'i2' || activeFullImageSrc.includes('I-2')) {
+    document.getElementById('modalFourthBtn').innerText = 'Cambia stagione 🔄';
+    document.getElementById('modalFourthBtn').style.display = 'block';
+  } else {
+    document.getElementById('modalFourthBtn').style.display = 'none';
+  }
+
+  document.getElementById('imageModal').style.display = 'flex';
+}
 
     function openModalForA1() {
     
@@ -1064,7 +1108,7 @@ switch3: {
   activeTargetId = 'entry-A1';
 
   document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🧐';
-  document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+  document.getElementById('modalThirdBtn').innerText = 'Cambia immagine';
   document.getElementById('modalThirdBtn').style.display = 'block';
 
   // Nasconde il quarto tasto (stagione) se presente
@@ -1081,7 +1125,7 @@ switch3: {
       activeTargetId = 'entry-A2';
       
       document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
-      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine';
       document.getElementById('modalThirdBtn').style.display = 'block';
       document.getElementById('modalFourthBtn').style.display = 'none';
       document.getElementById('imageModal').style.display = 'flex';
@@ -1094,7 +1138,7 @@ switch3: {
       activeTargetId = 'entry-M1';
       
       document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
-      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
+      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine';
       document.getElementById('modalThirdBtn').style.display = 'block';
       document.getElementById('modalFourthBtn').style.display = 'none';
       document.getElementById('imageModal').style.display = 'flex';
@@ -1127,25 +1171,31 @@ switch3: {
     }
 
     function openModalForI2() {
-      activeLetter = 'I2';
-      const data = i2SwitchVariants[currentI2SwitchVersion];
-      activeFullImageSrc = data.fullImg;
-      activeTargetId = 'entry-I2';
+  activeLetter = 'I2';
+  
+  // Se la stagione attiva è estate, usa la foto intera estiva
+  if (currentI2Version === 'summer') {
+    activeFullImageSrc = i2Variants.summer.fullImg;
+  } else {
+    const data = i2SwitchVariants[currentI2SwitchVersion];
+    activeFullImageSrc = data.fullImg;
+  }
 
-      document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
-      document.getElementById('modalThirdBtn').innerText = 'Cambia immagine 🔄';
-      document.getElementById('modalThirdBtn').style.display = 'block';
+  activeTargetId = 'entry-I2';
 
-      // Mostra il tasto stagione SOLO se siamo sulla variante I-2 (default) o se l'immagine è I-2
-      if (currentI2SwitchVersion === 'default' || activeFullImageSrc.includes('I-2')) {
-        document.getElementById('modalFourthBtn').innerText = 'Cambia stagione 🔄';
-        document.getElementById('modalFourthBtn').style.display = 'block';
-      } else {
-        document.getElementById('modalFourthBtn').style.display = 'none';
-      }
+  document.getElementById('modalSecondBtn').innerText = 'Scopri di più 🤓';
+  document.getElementById('modalThirdBtn').innerText = 'Cambia immagine';
+  document.getElementById('modalThirdBtn').style.display = 'block';
 
-      document.getElementById('imageModal').style.display = 'flex';
-    }
+  if (currentI2SwitchVersion === 'default' || activeFullImageSrc.includes('I-2')) {
+    document.getElementById('modalFourthBtn').innerText = 'Cambia stagione 🔄';
+    document.getElementById('modalFourthBtn').style.display = 'block';
+  } else {
+    document.getElementById('modalFourthBtn').style.display = 'none';
+  }
+
+  document.getElementById('imageModal').style.display = 'flex';
+}
     function openModal(fullImageSrc, targetSectionId, secondBtnText = 'Scopri di più 🤓') {
       activeLetter = '';
       activeFullImageSrc = fullImageSrc;
